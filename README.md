@@ -1,3 +1,3 @@
 # AcademicManager
 
-by someone
+by someone and some else
