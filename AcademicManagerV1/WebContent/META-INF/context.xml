@@ -8,8 +8,8 @@
    <Resource name="jdbc/testDB" auth="Container"
         type="javax.sql.DataSource"
         maxActive="100" maxIdle="30" maxWait="10000"
-        username="cl44-academic" 
-        password="EFdUG!^b4" 
+        username="xxxxuser" 
+        password="xxxpass" 
         driverClassName="com.mysql.jdbc.Driver"
-        url="jdbc:mysql://176.32.230.1/cl44-academic"/>
+        url="jdbc:mysql://z.z.z.z/dbname"/>
 </Context>
