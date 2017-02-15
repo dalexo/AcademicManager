@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>AcademicManagerV1</name>
+	<name>FrontEnd_Devacad</name>
 	<comment></comment>
 	<projects>
-		<project>mysql-connector-java-5.1.40-bin</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
