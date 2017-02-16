@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Welcome to HAU</title>
+    <link rel="stylesheet" href="../css/login.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  </head>
+  <body>
+    <h1>Hellenic American Union</h1>
+    <form action="index.html" method="post">
+      <div id="login-form">
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username" value="" autofocus="" required="required"><br>
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password" value="" required="required"><br>
+        <input type="checkbox" id="checkbox" name="rememberme" value="true" checked="">
+        <label for="checkbox" id="remember-me-label">Remember me</label><br>
+        <div class="btn-container">
+          <input type="submit" value="Login" class="btn">
+        </div>
+        <div class="btn-container">
+          <!-- for onclick event add a method in tag below -->
+          <button type="button" name="register" class="btn">Register</button>
+        </div>
+        <div class="reset-pass">
+          <p>Forget your password? Reset <a href="#">here</a></p>
+        </div>
+
+      </div>
+
+    </form>
+  </body>
+</html>

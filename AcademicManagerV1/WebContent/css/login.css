@@ -1,0 +1,90 @@
+body {
+  background: url("../images/background.jpg") no-repeat fixed center;
+  background-size: cover;
+}
+
+h1 {
+  font-family: 'Roboto', sans-serif;
+  font-size: 72px;
+  color: #ffffff;
+  text-align: center;
+  margin-top: 109px;
+  margin-bottom: 0px;
+  text-shadow: 0px 5px rgba(0,0,0,0.5);
+}
+
+#login-form {
+  position: relative;;
+  width: 350px;
+  height:400px;
+  top: 166px;
+  margin: auto;
+}
+
+input[type=text] {
+  width:350px;
+  height:30px;
+  border-radius: 5px;
+  font-size: 18px;
+  margin-top: 6px;
+  margin-bottom: 30px;
+}
+
+input[type=password] {
+  width:350px;
+  height:30px;
+  border-radius: 5px;
+  font-size: 18px;
+  margin-top: 6px;
+  margin-bottom: 13px;
+}
+
+.btn-container {
+  width: 315px;
+  height: 54px;
+  margin-top: 22px;
+  margin-left: 17px;
+  background-color: #7A7A7A;
+  border-radius: 5px;
+  box-shadow: 0px 1px 1px rgba(255,255,255,0.7);
+
+}
+
+.btn {
+  width: 315px;
+  height: 54px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  font-size: 14px;
+  color: #ffffff;
+  background-color: #7A7A7A;
+  border: 0px;
+  border-radius: 5px;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+#remember-me-label {
+  font-size: 10px;
+  font-weight: lighter;
+}
+
+label {
+  position: relative;
+  font-family: 'Roboto',sans-serif;
+  font-size: 16px;
+  color: #ffffff;
+  padding-bottom: 6px;
+}
+
+.reset-pass {
+  font-family: 'Roboto',sans-serif;
+  font-size: 10px;
+  color: #ffffff;
+  text-align: center;
+}
+
+.reset-pass a {
+  text-decoration: none;
+  color:#e91e63
+}
