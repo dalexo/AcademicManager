@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Add New Course</title>
+<title>Update Course Details</title>
 </head>
 <body>
 	<center><h1>Update Course Details</h1></center>
