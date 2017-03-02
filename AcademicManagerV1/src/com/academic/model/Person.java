@@ -70,6 +70,10 @@ public class Person {
 		this.surname = surname;
 	}
 
+	public void setDateOfBirth(String dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
+	}
+
 	public String getDateOfBirth() {
 		return dateOfBirth;
 	}
@@ -80,10 +84,6 @@ public class Person {
 
 	public void setSex(boolean sex) {
 		this.sex = sex;
-	}
-
-	public void setDateOfBirth(String dateOfBirth) {
-		this.dateOfBirth = dateOfBirth;
 	}
 
 	public String getEmail() {
@@ -144,7 +144,7 @@ public class Person {
 
 	@Override
 	public String toString() {
-		return "Person[personId = " + personId + ",  name " + name + ", surname: " + surname + ", personType: "
+		return "Person[personId = " + personId + ",  name: " + name + ", surname: " + surname + ", personType: "
 				+ personType + ", dateOfBirth: " + dateOfBirth + ", sex: " + isSex() + ", email: " + email
 				+ ", phoneNumber: " + phoneNumber + ", address:" + address + ", taxNumber:" + taxNumber
 				+ ", bankAccount: " + bankAccount + ", username: " + username + ", password:" + password + "]";
