@@ -78,11 +78,19 @@ public class Person {
 		return dateOfBirth;
 	}
 
-	public boolean isSex() {
+	public boolean isMale() {
 		return sex;
 	}
 
-	public void setSex(boolean sex) {
+	public void setisMale(boolean sex) {
+		this.sex = sex;
+	}
+
+	public boolean isFemale() {
+		return sex;
+	}
+
+	public void setisFemale(boolean sex) {
 		this.sex = sex;
 	}
 
@@ -145,9 +153,10 @@ public class Person {
 	@Override
 	public String toString() {
 		return "Person[personId = " + personId + ",  name: " + name + ", surname: " + surname + ", personType: "
-				+ personType + ", dateOfBirth: " + dateOfBirth + ", sex: " + isSex() + ", email: " + email
-				+ ", phoneNumber: " + phoneNumber + ", address:" + address + ", taxNumber:" + taxNumber
-				+ ", bankAccount: " + bankAccount + ", username: " + username + ", password:" + password + "]";
+				+ personType + ", dateOfBirth: " + dateOfBirth + ", sex: " + isMale() + ", sex: " + isFemale()
+				+ ", email: " + email + ", phoneNumber: " + phoneNumber + ", address:" + address + ", taxNumber:"
+				+ taxNumber + ", bankAccount: " + bankAccount + ", username: " + username + ", password:" + password
+				+ "]";
 
 	}
 }

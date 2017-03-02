@@ -4,7 +4,7 @@ public class Course {
 
 	public static final int DEFAULT_COURSE_ID = -1;
 	public static final int DEFAULT_COST = 0;
-	public static final boolean IS_NOT_ACTIVE = false;
+	
 
 	private int courseId;
 	private String title;
@@ -21,7 +21,7 @@ public class Course {
 		this.description = "";
 		this.startingDate = "";
 		this.endingDate = "";
-		this.isActive = IS_NOT_ACTIVE;
+		this.isActive = false;
 
 	}
 
