@@ -4,8 +4,7 @@ public class Person {
 
 	public static final int DEFAULT_PERSON_TYPE = -1;
 	public static final int DEFAULT_PERSON_ID = 0;
-	public static final boolean MALE_SEX = true;
-	public static final boolean FEMALE_SEX = false;
+	
 
 	private int personId;
 	private String name;
@@ -27,7 +26,7 @@ public class Person {
 		this.name = "";
 		this.username = "";
 		this.dateOfBirth = "";
-		this.sex = FEMALE_SEX;
+		this.sex = false;
 		this.email = "";
 		this.phoneNumber = "";
 		this.address = "";
@@ -82,16 +81,16 @@ public class Person {
 		return sex;
 	}
 
-	public void setisMale(boolean sex) {
-		this.sex = sex;
+	public void setisMale() {
+		this.sex = true;
 	}
 
 	public boolean isFemale() {
 		return sex;
 	}
 
-	public void setisFemale(boolean sex) {
-		this.sex = sex;
+	public void setisFemale() {
+		this.sex = false;
 	}
 
 	public String getEmail() {
