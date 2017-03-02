@@ -4,7 +4,6 @@ public class Course {
 
 	public static final int DEFAULT_COURSE_ID = -1;
 	public static final int DEFAULT_COST = 0;
-	
 
 	private int courseId;
 	private String title;

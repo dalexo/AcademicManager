@@ -4,7 +4,6 @@ public class Person {
 
 	public static final int DEFAULT_PERSON_TYPE = -1;
 	public static final int DEFAULT_PERSON_ID = 0;
-	
 
 	private int personId;
 	private String name;
@@ -78,7 +77,7 @@ public class Person {
 	}
 
 	public boolean isMale() {
-		return sex;
+		return this.sex == true;
 	}
 
 	public void setisMale() {
@@ -86,7 +85,7 @@ public class Person {
 	}
 
 	public boolean isFemale() {
-		return sex;
+		return this.sex == false;
 	}
 
 	public void setisFemale() {
