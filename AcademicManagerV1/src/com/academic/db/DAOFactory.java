@@ -1,4 +1,5 @@
 package com.academic.db;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -10,17 +11,12 @@ import java.sql.Connection;
 import com.academic.db.DAOImpl;
 import com.academic.model.Course;
 
-
-
-
 //Factory class to retrieve all DAOs
 public class DAOFactory {
-
 
 	// Constants
 	private static final String DB_URL = "jdbc:mysql://localhost/AcademicManager";
 	private static final String COURSE_DAO_KEY = "course.dao";
-	
 
 	// Attributes
 	private Connection dbConnection;
@@ -51,9 +47,6 @@ public class DAOFactory {
 		return (Dao<Course>) daoTable.get(COURSE_DAO_KEY);
 	}
 
-	
-	
-	
 	public void close() {
 
 		Collection<DAOImpl> daos = daoTable.values();
@@ -69,7 +62,4 @@ public class DAOFactory {
 			e.printStackTrace();
 		}
 	}
-}
-
-
 }
