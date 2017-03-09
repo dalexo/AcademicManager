@@ -9,6 +9,8 @@ import java.util.Iterator;
 import java.util.Map;
 import java.sql.Connection;
 import com.academic.db.DAOImpl;
+import com.academic.db.dao.CourseDAO;
+import com.academic.db.dao.Dao;
 import com.academic.model.Course;
 
 //Factory class to retrieve all DAOs
