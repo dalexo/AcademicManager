@@ -19,10 +19,10 @@ public class CourseDAO extends DAOImpl<Course> {
 	public CourseDAO(Connection conn) throws SQLException {
 		super(conn);
 		selectByIdStatement = dbConnection.prepareStatement(
-				"SELECT courseId, title, cost, description, startingDate, endingDate, isActive  FROM wp_course WHERE id = ?;");
+				"SELECT courseId, title, cost, description, startingDate, endingDate, isActive FROM course WHERE isActive=1 AND courseId=?;");
 		selectAllStatement = dbConnection.prepareStatement(
-				"SELECT courseId, title, cost, description, startingDate, endingDate, isActive  FROM wp_course;");
-		countStatement = dbConnection.prepareStatement("SELECT count(*) FROM wp_course;");
+				"SELECT courseId, title, cost, description, startingDate, endingDate, isActive FROM course WHERE isActive=1;");
+		countStatement = dbConnection.prepareStatement("SELECT COUNT(*) FROM course WHERE isActive=1;");
 	}
 
 	@Override
