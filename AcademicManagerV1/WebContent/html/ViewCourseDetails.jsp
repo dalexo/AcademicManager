@@ -8,19 +8,61 @@
 
 
 <body>
+	<%@page
+		import="com.academic.db.*,com.academic.model.*,com.academic.db.dao.*,java.sql.*,java.util.*"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-  View Course Details<br /><br /><br />
-  <form action="test_form" method="post">
-  Course detail #1: <br><input placeholder="detail #1" name="detail#1"></placeholder><br>
-  Course detail #2: <br><input placeholder="detail #2" name="detail#2"></placeholder><br>
-  Course detail #3: <br><input placeholder="detail #3" name="detail#3"></placeholder><br>
-  Course detail #4: <br><input placeholder="detail #4" name="detail#4"></placeholder><br>
-  Course detail #5: <br><input placeholder="detail #5" name="detail#5"></placeholder><br>
+	<%
+		int id = Integer.parseInt(request.getParameter("id"));
 
-  <br><br><br>
-  <button type="ok">ok</button>
-  <button type="reset">reset</button>
+		Dao<Course> courseDao = null;
 
+		try {
+			courseDao = DAOFactory.getInstance().getCourseDao();
+
+		} catch (SQLException e) {
+			out.print("Could not connect to the database");
+			e.printStackTrace();
+			return;
+		}
+		Course c = courseDao.get(id);
+		request.setAttribute("course", c);
+	%>
+
+	<p>View Course Details</p>
+
+
+	<table>
+		<thead>
+
+			<tr>
+				<th>Id</th>
+				<th>Title</th>
+				<th>Description</th>
+				<th>Cost</th>
+				<th>startingDate</th>
+				<th>endingDate</th>
+				<th>isActive</th>
+				<th>Teachers</th>
+			</tr>
+		</thead>
+		<tbody>
+
+			<tr>
+
+				<td><c:out value="${course.getCourseId()}" /></td>
+				<td><c:out value="${course.getTitle()}" /></td>
+				<td><c:out value="${course.getDescription()}" /></td>
+				<td><c:out value="${course.getCost()}" /></td>
+				<td><c:out value="${course.getStartingDate()}" /></td>
+				<td><c:out value="${course.getEndingDate()}" /></td>
+				<td><c:out value="${course.isActive()}" /></td>
+				
+
+
+			</tr>
+		</tbody>
+	</table>
 
 
 </body>
