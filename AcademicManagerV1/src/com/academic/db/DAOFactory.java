@@ -7,11 +7,19 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+
+import javax.naming.NamingException;
+
 import java.sql.Connection;
 import com.academic.db.DAOImpl;
 import com.academic.db.dao.CourseDAO;
 import com.academic.db.dao.Dao;
 import com.academic.model.Course;
+
+//JNDI
+private Context ctx;
+private Datasource ds;
+
 
 //Factory class to retrieve all DAOs
 public class DAOFactory {
@@ -29,7 +37,15 @@ public class DAOFactory {
 
 	// Constructor
 	protected DAOFactory() throws SQLException {
-		dbConnection = DriverManager.getConnection(DB_URL, "AcademicManager_u", "AcademicManager_p");
+		
+		try {
+			ctx = new InitialContext();
+			ds = (DataSource) ctx.lookup("java:/comp/env/AcademicManagerDB");
+			dbConnection = ds.getConnection();
+		} catch (NamingException e) {
+			e.printStackTrace();
+		}
+		
 		daoTable = new HashMap<String, DAOImpl>();
 	}
 
