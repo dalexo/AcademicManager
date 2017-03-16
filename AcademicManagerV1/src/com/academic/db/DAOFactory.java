@@ -8,18 +8,16 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import javax.sql.DataSource;
 
 import java.sql.Connection;
 import com.academic.db.DAOImpl;
 import com.academic.db.dao.CourseDAO;
 import com.academic.db.dao.Dao;
 import com.academic.model.Course;
-
-//JNDI
-private Context ctx;
-private Datasource ds;
-
 
 //Factory class to retrieve all DAOs
 public class DAOFactory {
@@ -31,13 +29,15 @@ public class DAOFactory {
 	// Attributes
 	private Connection dbConnection;
 	private Map<String, DAOImpl> daoTable;
+	private Context ctx;
+	private DataSource ds;
 
 	// Singleton instance
 	private static DAOFactory instance;
 
 	// Constructor
 	protected DAOFactory() throws SQLException {
-		
+
 		try {
 			ctx = new InitialContext();
 			ds = (DataSource) ctx.lookup("java:/comp/env/AcademicManagerDB");
@@ -45,7 +45,7 @@ public class DAOFactory {
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
-		
+
 		daoTable = new HashMap<String, DAOImpl>();
 	}
 
