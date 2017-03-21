@@ -18,9 +18,12 @@ public class PersonDAO extends DAOImpl<Person> {
 	public PersonDAO(Connection conn) throws SQLException {
 		super(conn);
 		// TODO Auto-generated constructor stub
-		selectByIdStatement = (PreparedStatement) dbConnection.prepareStatement("SELECT personId,name,surname,personType,dateOfBirth,email,phoneNumber,address,taxNumber,bankAccount,username,password,sex FROM person WHERE personId=?;");
-		selectAllStatement = (PreparedStatement) dbConnection.prepareStatement("SELECT * FROM person;");
-		countStatement = (PreparedStatement) dbConnection.prepareStatement("SELECT COUNT(*) FROM person;");
+		selectByIdStatement = (PreparedStatement) dbConnection.prepareStatement("SELECT personId,name,surname,personType,dateOfBirth,email,phoneNumber,address,taxNumber,bankAccount,username,password,sex FROM person WHERE personId=?;",
+				ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		selectAllStatement = (PreparedStatement) dbConnection.prepareStatement("SELECT * FROM person;",
+				ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		countStatement = (PreparedStatement) dbConnection.prepareStatement("SELECT COUNT(*) FROM person;",
+				ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 	}
 
 	@Override
