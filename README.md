@@ -14,3 +14,7 @@ Database Installation (MariaDB 10.1)
 Java Naming and Directory Interface (JNDI) Implementation
 
 Στο project έχει γίνει υλοποίηση του JNDI όπου θα πρέπει να προστεθούν οι απαραίτητες ρυθμίσεις στο web.xml του project καθώς και στο context.xml του Tomcat. Αναλυτική περιγραφή των ρυθμίσεων που χρειάζονται θα βρείτε στην σελίδα Java Naming and Directory Interface του Wiki.
+
+JSP Pages CSS
+
+Στις JSP σελίδες γίνεται χρήση CSS και Bootstrap για responsive design. Συγκεκριμένα χρησιμοποιήθηκε το Bootstrap CDN 3.3.7.
