@@ -37,9 +37,11 @@
 		request.setAttribute("course", c);
 	%>
 	<header>
+		<a href="FrontEnd_Homepage.jsp">
 		<button class="btn btn-color" role="button">
-			<a href="FrontEnd_Homepage.jsp">Back</a>
+			Back
 		</button>
+			</a>
 	</header>
 
 	<div class="div-body">
