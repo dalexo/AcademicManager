@@ -36,10 +36,8 @@
 		%>
 		<div class="container-fluid">
 			<div class="row">
-				<img class="person-image" src="../images/mj.jpg"
-					alt="Student Michael Jakcson">
 				<p>
-					Welcome <br>Michael Jackson
+					Welcome <br>Student
 				</p>
 				<div class="col-md-6">
 					<button class="btn btn-block btn-primary">Home</button>
