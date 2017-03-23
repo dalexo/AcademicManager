@@ -32,7 +32,7 @@ public class CourseDAO extends DAOImpl<Course> {
 		ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 		
 		addStatement = dbConnection.prepareStatement(
-				"INSERT SQL");
+				"INSERT SQL ");
 
 		updateStatement = dbConnection.prepareStatement(
 				"INSERT SQL");
