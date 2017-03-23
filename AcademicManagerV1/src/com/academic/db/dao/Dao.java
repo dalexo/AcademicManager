@@ -10,4 +10,10 @@ public interface Dao<T> {
 	List<T> getAll();
 
 	int countAll();
+	
+	void add(T t);
+
+	void update(T t);
+
+	void delete(T t);
 }
