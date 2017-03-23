@@ -111,6 +111,23 @@ public class PersonDAO extends DAOImpl<Person> {
 		}
 		return count;
 	}
+	@Override
+	public void add(Person t) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void update(Person t) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void delete(Person t) {
+		// TODO Auto-generated method stub
+		
+	}
 
 	@Override
 	public void close() {
