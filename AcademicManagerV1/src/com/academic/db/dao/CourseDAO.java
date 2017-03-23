@@ -15,6 +15,10 @@ public class CourseDAO extends DAOImpl<Course> {
 	private PreparedStatement selectByIdStatement;
 	private PreparedStatement selectAllStatement;
 	private PreparedStatement countStatement;
+	//CRUD
+	private PreparedStatement addStatement;
+	private PreparedStatement updateStatement;
+	private PreparedStatement deleteStatement;
 
 	public CourseDAO(Connection conn) throws SQLException {
 		super(conn);
@@ -26,6 +30,14 @@ public class CourseDAO extends DAOImpl<Course> {
 				ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 		countStatement = dbConnection.prepareStatement("SELECT COUNT(*) FROM course WHERE isActive=1;",
 		ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		
+		addStatement = dbConnection.prepareStatement(
+				"INSERT SQL");
+
+		updateStatement = dbConnection.prepareStatement(
+				"INSERT SQL");
+
+		deleteStatement = dbConnection.prepareStatement("INSERT SQL");
 	}
 
 	@Override
@@ -97,6 +109,55 @@ public class CourseDAO extends DAOImpl<Course> {
 			return -1;
 		}
 		return count;
+	}
+	
+	@Override
+	public void add(Course t) {
+		try {
+			addStatement.setString(1, t.getTitle());
+			addStatement.setInt(2, t.getCost());
+			addStatement.setString(3, t.getDescription());
+			addStatement.setString(4, t.getStartingDate());
+			addStatement.setString(5, t.getEndingDate());
+			addStatement.setBoolean(6, t.isActive());
+			addStatement.executeUpdate();
+			addStatement.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void update(Course t) {
+		try {
+			updateStatement.setString(1, t.getTitle());
+			updateStatement.setInt(2, t.getCost());
+			updateStatement.setString(3, t.getDescription());
+			updateStatement.setString(4, t.getStartingDate());
+			updateStatement.setString(5, t.getEndingDate());
+			updateStatement.setBoolean(6, t.isActive());
+			updateStatement.setInt(7, t.getCourseId());
+			updateStatement.executeUpdate();
+			updateStatement.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void delete(Course t) {
+		// TODO Auto-generated method stub
+		try {
+
+			deleteStatement.setInt(1, t.getCourseId());
+			deleteStatement.executeUpdate();
+			deleteStatement.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
