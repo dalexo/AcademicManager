@@ -5,7 +5,7 @@
 	id="WebApp_ID" version="3.0">
 	<display-name>AcademicManager</display-name>
 	<welcome-file-list>
-		<welcome-file>FrontEnd_Homepage.jsp</welcome-file>
+		<welcome-file>html/FrontEnd_Homepage.jsp</welcome-file>
 	</welcome-file-list>
 	<resource-ref>
 		<description>DB Connection</description>
