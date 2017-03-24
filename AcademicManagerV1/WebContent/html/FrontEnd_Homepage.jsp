@@ -57,7 +57,7 @@
 								<tr>
 
 									<td><a
-										href="ViewCourseDetails.jsp?id=${course.getCourseId()}"><c:out
+										href="./html/ViewCourseDetails.jsp?id=${course.getCourseId()}"><c:out
 												value="${course.getTitle()}" /></a></td>
 
 								</tr>
