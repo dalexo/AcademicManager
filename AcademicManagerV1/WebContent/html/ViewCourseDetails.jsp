@@ -37,7 +37,7 @@
 		request.setAttribute("course", c);
 	%>
 	<header>
-		<a href="FrontEnd_Homepage.jsp">
+		<a href="/AcademicManagerV1">
 		<button class="btn btn-color" role="button">
 			Back
 		</button>
