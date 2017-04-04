@@ -8,7 +8,7 @@
 -- Δομή πίνακα για τον πίνακα `course`
 --
 
-CREATE TABLE `course` (
+CREATE TABLE IF NOT EXISTS `course` (
   `courseId` int(11) NOT NULL,
   `title` varchar(128) COLLATE utf8_bin NOT NULL,
   `cost` int(11) NOT NULL,
@@ -33,7 +33,7 @@ INSERT INTO `course` (`courseId`, `title`, `cost`, `description`, `startingDate`
 -- Δομή πίνακα για τον πίνακα `person`
 --
 
-CREATE TABLE `person` (
+CREATE TABLE IF NOT EXISTS `person` (
   `personId` int(11) NOT NULL,
   `name` varchar(128) COLLATE utf8_bin NOT NULL,
   `surname` varchar(128) COLLATE utf8_bin NOT NULL,
@@ -46,7 +46,8 @@ CREATE TABLE `person` (
   `taxNumber` varchar(128) COLLATE utf8_bin NOT NULL,
   `bankAccount` varchar(128) COLLATE utf8_bin NOT NULL,
   `username` varchar(128) COLLATE utf8_bin NOT NULL,
-  `password` varchar(128) COLLATE utf8_bin NOT NULL
+  `password` varchar(128) COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY(personId)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
@@ -72,7 +73,7 @@ INSERT INTO `person` (`personId`, `name`, `surname`, `type`, `dateOfBirth`, `sex
 -- Δομή πίνακα για τον πίνακα `teaching`
 --
 
-CREATE TABLE `teaching` (
+CREATE TABLE IF NOT EXISTS `teaching` (
   `personId` int(11) NOT NULL,
   `courseId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
@@ -101,8 +102,8 @@ ALTER TABLE `course`
 --
 -- Ευρετήρια για πίνακα `person`
 --
-ALTER TABLE `person`
-  ADD PRIMARY KEY (`personId`);
+/*ALTER TABLE `person`
+  ADD PRIMARY KEY (`personId`);*/
 
 --
 -- Ευρετήρια για πίνακα `teaching`
@@ -124,3 +125,23 @@ ALTER TABLE `course`
 --
 ALTER TABLE `person`
   MODIFY `personId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+
+-- DROP the columns below as requested by G.Metaxas
+ALTER TABLE person DROP username,DROP password;
+
+
+-- Creation of table users
+
+CREATE TABLE IF NOT EXISTS users (
+id int NOT NULL,
+user_email varchar (255) NOT NULL,
+user_password char (128),
+last_login TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ,
+date_created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+status_account boolean,
+personId int (11),
+PRIMARY KEY(user_email),
+FOREIGN KEY (personId) REFERENCES Person(personId)
+
+);
