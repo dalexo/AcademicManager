@@ -35,7 +35,7 @@ public class CourseDAO extends DAOImpl<Course> {
 				"INSERT SQL ");
 
 		updateStatement = dbConnection.prepareStatement(
-				"INSERT SQL");
+				"UPDATE course SET title= ? , cost= ?, description= ?, startingDate= ?, endingDate= ? , isActive= ? WHERE courseId=?");
 
 		deleteStatement = dbConnection.prepareStatement("INSERT SQL");
 	}
