@@ -86,7 +86,7 @@ public class CourseDAO extends DAOImpl<Course> {
 
 			resultSet.close();
 		} catch (SQLException e) {
-			System.out.println("Caught SQLException while trying to retrieve all WP posts");
+			System.out.println("Caught SQLException while trying to retrieve all courses");
 			e.printStackTrace();
 			return null;
 		}
@@ -104,7 +104,7 @@ public class CourseDAO extends DAOImpl<Course> {
 			}
 			resultSet.close();
 		} catch (SQLException e) {
-			System.out.println("Caught SQLException while counting WP posts");
+			System.out.println("Caught SQLException while counting courses");
 			e.printStackTrace();
 			return -1;
 		}
