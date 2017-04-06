@@ -44,13 +44,17 @@ CREATE TABLE IF NOT EXISTS `person` (
   `phoneNumber` varchar(128) COLLATE utf8_bin NOT NULL,
   `address` varchar(128) COLLATE utf8_bin NOT NULL,
   `taxNumber` varchar(128) COLLATE utf8_bin NOT NULL,
-  `bankAccount` varchar(128) COLLATE utf8_bin NOT NULL
+  `bankAccount` varchar(128) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY(personId)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
---
+-- DROP the columns below as requested by G.Metaxas
+ALTER TABLE person DROP COLUMN IF EXISTS username;
+ALTER TABLE person DROP COLUMN IF EXISTS password;
+
+
 -- Άδειασμα δεδομένων του πίνακα `person`
---
+DELETE FROM person;
 
 INSERT INTO `person` (`personId`, `name`, `surname`, `type`, `dateOfBirth`, `sex`, `email`, `phoneNumber`, `address`, `taxNumber`, `bankAccount`) VALUES
 (1, 'Leonardo', 'Di Caprio', 'Student', '1972-11-25', 'Male', 'leodic@gmail.com', '6908585672', 'Sunset Boulevard 52', '2134567890', ''),
@@ -73,12 +77,13 @@ INSERT INTO `person` (`personId`, `name`, `surname`, `type`, `dateOfBirth`, `sex
 
 CREATE TABLE IF NOT EXISTS `teaching` (
   `personId` int(11) NOT NULL,
-  `courseId` int(11) NOT NULL
+  `courseId` int(11) NOT NULL,
+  PRIMARY KEY(personId,courseId)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
---
+
 -- Άδειασμα δεδομένων του πίνακα `teaching`
---
+DELETE FROM teaching;
 
 INSERT INTO `teaching` (`personId`, `courseId`) VALUES
 (5, 1),
@@ -100,8 +105,8 @@ ALTER TABLE `course`
 --
 -- Ευρετήρια για πίνακα `teaching`
 --
-ALTER TABLE `teaching`
-  ADD PRIMARY KEY (`personId`,`courseId`);
+-- ALTER TABLE `teaching`
+--   ADD PRIMARY KEY (`personId`,`courseId`);
 
 --
 -- AUTO_INCREMENT για άχρηστους πίνακες
@@ -119,22 +124,20 @@ ALTER TABLE `person`
   MODIFY `personId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 
--- DROP the columns below as requested by G.Metaxas
-ALTER TABLE person DROP IF EXISTS username;
-ALTER TABLE person DROP IF EXISTS password;
+
 
 
 -- Creation of table users
 
 CREATE TABLE IF NOT EXISTS users (
-id int NOT NULL,
+user_id int NOT NULL AUTO_INCREMENT,
 user_email varchar (255) NOT NULL,
 user_password char (128),
 last_login TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ,
 date_created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 status_account boolean,
 personId int (11),
-PRIMARY KEY(user_email),
-FOREIGN KEY (personId) REFERENCES Person(personId)
-
+PRIMARY KEY(user_id),
+FOREIGN KEY (personId) REFERENCES Person(personId),
+UNIQUE KEY(user_email)
 );
