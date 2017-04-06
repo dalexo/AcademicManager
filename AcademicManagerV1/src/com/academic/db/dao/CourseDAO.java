@@ -54,6 +54,7 @@ public class CourseDAO extends DAOImpl<Course> {
 				course.setDescription(resultSet.getString("description"));
 				course.setStartingDate(resultSet.getString("startingDate"));
 				course.setEndingDate(resultSet.getString("endingDate"));
+				course.setActive(resultSet.getBoolean("isActive"));
 
 			}
 			resultSet.close();
@@ -81,6 +82,7 @@ public class CourseDAO extends DAOImpl<Course> {
 				course.setDescription(resultSet.getString("description"));
 				course.setStartingDate(resultSet.getString("startingDate"));
 				course.setEndingDate(resultSet.getString("endingDate"));
+				course.setActive(resultSet.getBoolean("isActive"));
 				objectList.add(course);
 			}
 
@@ -119,7 +121,7 @@ public class CourseDAO extends DAOImpl<Course> {
 			addStatement.setString(3, t.getDescription());
 			addStatement.setString(4, t.getStartingDate());
 			addStatement.setString(5, t.getEndingDate());
-			addStatement.setBoolean(6, t.isActive());
+			addStatement.setBoolean(6, t.getActive());
 			addStatement.executeUpdate();
 			addStatement.close();
 
@@ -136,7 +138,7 @@ public class CourseDAO extends DAOImpl<Course> {
 			updateStatement.setString(3, t.getDescription());
 			updateStatement.setString(4, t.getStartingDate());
 			updateStatement.setString(5, t.getEndingDate());
-			updateStatement.setBoolean(6, t.isActive());
+			updateStatement.setBoolean(6, t.getActive());
 			updateStatement.setInt(7, t.getCourseId());
 			updateStatement.executeUpdate();
 			updateStatement.close();
