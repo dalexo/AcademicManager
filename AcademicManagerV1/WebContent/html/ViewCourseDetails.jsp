@@ -73,7 +73,7 @@
 						<td><c:out value="${course.getCost()}" /></td>
 						<td><c:out value="${course.getStartingDate()}" /></td>
 						<td><c:out value="${course.getEndingDate()}" /></td>
-						<td><c:out value="${course.isActive()}" /></td>
+						<td><c:out value="${course.getActive()}" /></td>
 
 
 
