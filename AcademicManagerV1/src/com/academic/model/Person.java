@@ -15,15 +15,13 @@ public class Person {
 	private String address;
 	private String taxNumber;
 	private String bankAccount;
-	private String username;
-	private String password;
 	private boolean sex;
 
 	public Person() {
 		this.personType = DEFAULT_PERSON_TYPE;
 		this.personId = DEFAULT_PERSON_ID;
 		this.name = "";
-		this.username = "";
+		this.surname = "";
 		this.dateOfBirth = "";
 		this.sex = false;
 		this.email = "";
@@ -31,8 +29,6 @@ public class Person {
 		this.address = "";
 		this.taxNumber = "";
 		this.bankAccount = "";
-		this.username = "";
-		this.password = "";
 
 	}
 
@@ -132,29 +128,13 @@ public class Person {
 		this.bankAccount = bankAccount;
 	}
 
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
 
 	@Override
 	public String toString() {
 		return "Person[personId = " + personId + ",  name: " + name + ", surname: " + surname + ", personType: "
 				+ personType + ", dateOfBirth: " + dateOfBirth + ", sex: " + isMale() + ", sex: " + isFemale()
 				+ ", email: " + email + ", phoneNumber: " + phoneNumber + ", address:" + address + ", taxNumber:"
-				+ taxNumber + ", bankAccount: " + bankAccount + ", username: " + username + ", password:" + password
-				+ "]";
+				+ taxNumber + ", bankAccount: " + bankAccount + "]";
 
 	}
 }
