@@ -8,6 +8,8 @@
 -- Δομή πίνακα για τον πίνακα `course`
 --
 
+DROP TABLE IF EXISTS course;
+
 CREATE TABLE IF NOT EXISTS `course` (
   `courseId` int(11) NOT NULL,
   `title` varchar(128) COLLATE utf8_bin NOT NULL,
@@ -15,12 +17,15 @@ CREATE TABLE IF NOT EXISTS `course` (
   `description` varchar(256) COLLATE utf8_bin NOT NULL,
   `startingDate` date NOT NULL,
   `endingDate` date NOT NULL,
-  `isActive` tinyint(1) NOT NULL
+  `isActive` tinyint(1) NOT NULL,
+  PRIMARY KEY (`courseId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Άδειασμα δεδομένων του πίνακα `course`
 --
+
+DELETE FROM course;
 
 INSERT INTO `course` (`courseId`, `title`, `cost`, `description`, `startingDate`, `endingDate`, `isActive`) VALUES
 (1, 'Web Development', 2000, 'HTML, CSS & Javascript in Depth', '2016-10-03', '2017-06-02', 1),
@@ -92,25 +97,7 @@ INSERT INTO `teaching` (`personId`, `courseId`) VALUES
 (8, 2),
 (10, 3);
 
---
--- Ευρετήρια για άχρηστους πίνακες
---
 
---
--- Ευρετήρια για πίνακα `course`
---
-ALTER TABLE `course`
-  ADD PRIMARY KEY (`courseId`);
-
---
--- Ευρετήρια για πίνακα `teaching`
---
--- ALTER TABLE `teaching`
---   ADD PRIMARY KEY (`personId`,`courseId`);
-
---
--- AUTO_INCREMENT για άχρηστους πίνακες
---
 
 --
 -- AUTO_INCREMENT για πίνακα `course`
