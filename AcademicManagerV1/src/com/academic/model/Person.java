@@ -39,7 +39,7 @@ public class Person {
 		this.personId = personId;
 	}
 
-	public int getType() {
+	public String getType() {
 		return type;
 	}
 
