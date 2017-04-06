@@ -32,12 +32,12 @@ public class CourseDAO extends DAOImpl<Course> {
 		ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 		
 		addStatement = dbConnection.prepareStatement(
-				"INSERT SQL ");
+				"INSERT INTO 'course'('courseId', `title`, `cost`, `description`, `startingDate`, `endingDate`, `isActive`) VALUES (?,?,?,?,?,?,?);");;
 
 		updateStatement = dbConnection.prepareStatement(
 				"INSERT SQL");
 
-		deleteStatement = dbConnection.prepareStatement("INSERT SQL");
+		deleteStatement = dbConnection.prepareStatement("CREATE TABLE course_deleted AS SELECT * FROM course; TRUNCATE course;");
 	}
 
 	@Override
