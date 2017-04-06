@@ -17,7 +17,7 @@ public class Person {
 	private String sex;
 
 	public Person() {
-		this.personType = "";
+		this.type = "";
 		this.personId = DEFAULT_PERSON_ID;
 		this.name = "";
 		this.surname = "";
