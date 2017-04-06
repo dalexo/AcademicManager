@@ -72,7 +72,7 @@ public class Course {
 		this.endingDate = endingDate;
 	}
 
-	public boolean isActive() {
+	public boolean getActive() {
 		return isActive;
 	}
 
@@ -84,7 +84,7 @@ public class Course {
 	public String toString() {
 		return "Course[courseId = " + courseId + ",  title: " + title + ", cost: " + cost + ", description: "
 				+ description + ", startingDate: " + startingDate + ", endingDate: " + endingDate + ", isActive(): "
-				+ isActive() + "]";
+				+ getActive() + "]";
 
 	}
 
