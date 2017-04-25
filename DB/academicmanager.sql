@@ -1,4 +1,4 @@
---
+﻿--
 -- Βάση δεδομένων: `academicmanager`
 --
 
@@ -18,12 +18,15 @@ CREATE TABLE IF NOT EXISTS `course` (
   `startingDate` date NOT NULL,
   `endingDate` date NOT NULL,
   `isActive` tinyint(1) NOT NULL,
-  PRIMARY KEY (`courseId`)
+  `isDeleted` int(11) NOT NULL,	
+    PRIMARY KEY (`courseId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Άδειασμα δεδομένων του πίνακα `course`
 --
+
+
 
 DELETE FROM course;
 
@@ -31,6 +34,14 @@ INSERT INTO `course` (`courseId`, `title`, `cost`, `description`, `startingDate`
 (1, 'Web Development', 2000, 'HTML, CSS & Javascript in Depth', '2016-10-03', '2017-06-02', 1),
 (2, 'CCNA', 2300, 'Cisco Official Certification Course', '2016-09-19', '2017-06-16', 1),
 (3, 'English', 1300, 'Lower Certification', '2016-10-03', '2017-05-19', 1);
+
+
+--
+-- Προσθήκη της στήλης isDeleted εφόσον δεν υπάρχει στον πίνακα `course`
+--
+
+
+  ALTER TABLE `course` ADD COLUMN IF NOT EXISTS `isDeleted` int(11) NOT NULL default '0';
 
 -- --------------------------------------------------------
 
