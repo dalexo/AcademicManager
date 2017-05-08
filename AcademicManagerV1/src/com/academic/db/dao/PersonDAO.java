@@ -8,22 +8,36 @@ import java.util.List;
 
 import com.academic.db.DAOImpl;
 import com.academic.model.Person;
-import com.mysql.jdbc.PreparedStatement;
+import java.sql.PreparedStatement;
 
 public class PersonDAO extends DAOImpl<Person> {
 	private PreparedStatement selectByIdStatement;
 	private PreparedStatement selectAllStatement;
 	private PreparedStatement countStatement;
+	//CRUD
+	private PreparedStatement addStatement;
+	private PreparedStatement updateStatement;
+	private PreparedStatement deleteStatement;
 
 	public PersonDAO(Connection conn) throws SQLException {
 		super(conn);
 		// TODO Auto-generated constructor stub
-		selectByIdStatement = (PreparedStatement) dbConnection.prepareStatement("SELECT personId,name,surname,type,dateOfBirth,email,phoneNumber,address,taxNumber,bankAccount,sex FROM person WHERE personId=?;",
+		selectByIdStatement = dbConnection.prepareStatement("SELECT personId,name,surname,type,dateOfBirth,email,phoneNumber,address,taxNumber,bankAccount,sex FROM person WHERE personId=?;",
 				ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-		selectAllStatement = (PreparedStatement) dbConnection.prepareStatement("SELECT * FROM person;",
+		
+		selectAllStatement = dbConnection.prepareStatement("SELECT * FROM person;",
 				ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-		countStatement = (PreparedStatement) dbConnection.prepareStatement("SELECT COUNT(*) FROM person;",
+		
+		countStatement = dbConnection.prepareStatement("SELECT COUNT(*) FROM person;",
 				ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+
+		addStatement = dbConnection.prepareStatement(
+				"INSERT INTO person (personId,name,surname,type,dateOfBirth,email,phoneNumber,address,taxNumber,bankAccount,sex) VALUES (null, ? , ?, ?, ?, ?, ?, ?, ?, ?, ?);");
+
+		updateStatement = dbConnection.prepareStatement(
+				"UPDATE person SET name=?,surname=?,type=?,dateOfBirth=?,email=?,phoneNumber=?,address=?,taxnumber=?,bankAccount=?,sex=? WHERE personId= ?;");
+		
+		deleteStatement = dbConnection.prepareStatement("DELETE * FROM person WHERE personId=?");
 	}
 
 	@Override
@@ -112,19 +126,60 @@ public class PersonDAO extends DAOImpl<Person> {
 	@Override
 	public void add(Person t) {
 		// TODO Auto-generated method stub
-		
+		try {
+			addStatement.setString(1, t.getName());
+			addStatement.setString(2, t.getSurname());
+			addStatement.setString(3, t.getType());
+			addStatement.setString(4, t.getDateOfBirth());
+			addStatement.setString(5, t.getEmail());
+			addStatement.setString(6, t.getPhoneNumber());
+			addStatement.setString(7, t.getAddress());
+			addStatement.setString(8, t.getTaxNumber());
+			addStatement.setString(9, t.getBankAccount());
+			addStatement.setString(10, t.getSex());
+			addStatement.executeUpdate();
+			addStatement.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public void update(Person t) {
 		// TODO Auto-generated method stub
-		
+		try {
+			updateStatement.setString(1, t.getName());
+			updateStatement.setString(2, t.getSurname());
+			updateStatement.setString(3, t.getType());
+			updateStatement.setString(4, t.getDateOfBirth());
+			updateStatement.setString(5, t.getEmail());
+			updateStatement.setString(6, t.getPhoneNumber());
+			updateStatement.setString(7, t.getAddress());
+			updateStatement.setString(8, t.getTaxNumber());
+			updateStatement.setString(9, t.getBankAccount());
+			updateStatement.setString(10, t.getSex());
+			updateStatement.setInt(11, t.getPersonId());
+			updateStatement.executeUpdate();
+			updateStatement.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public void delete(Person t) {
 		// TODO Auto-generated method stub
-		
+		try {
+
+			deleteStatement.setInt(1, t.getPersonId());
+			deleteStatement.executeUpdate();
+			deleteStatement.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
