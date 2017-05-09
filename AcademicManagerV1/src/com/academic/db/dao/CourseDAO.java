@@ -23,21 +23,21 @@ public class CourseDAO extends DAOImpl<Course> {
 	public CourseDAO(Connection conn) throws SQLException {
 		super(conn);
 		selectByIdStatement = dbConnection.prepareStatement(
-				"SELECT courseId, title, cost, description, startingDate, endingDate, isActive FROM course WHERE isActive=1 AND courseId=?;",
+				"SELECT courseId, title, cost, description, startingDate, endingDate, isActive FROM course WHERE isDeleted=0 AND courseId=?;",
 		ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 		selectAllStatement = dbConnection.prepareStatement(
-				"SELECT courseId, title, cost, description, startingDate, endingDate, isActive FROM course WHERE isActive=1;",
+				"SELECT courseId, title, cost, description, startingDate, endingDate, isActive FROM course WHERE isDeleted=0;",
 				ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-		countStatement = dbConnection.prepareStatement("SELECT COUNT(*) FROM course WHERE isActive=1;",
+		countStatement = dbConnection.prepareStatement("SELECT COUNT(*) FROM course WHERE isDeleted=0;",
 		ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-		
+
 		addStatement = dbConnection.prepareStatement(
-				"INSERT SQL ");
+				"INSERT INTO course (courseId, title, cost, description, startingDate, endingDate, isActive, isDeleted) VALUES ('?','?','?','?','?','?','?','?')");
 
 		updateStatement = dbConnection.prepareStatement(
 				"UPDATE course SET title= ? , cost= ?, description= ?, startingDate= ?, endingDate= ? , isActive= ? WHERE courseId=?");
 
-		deleteStatement = dbConnection.prepareStatement("INSERT SQL");
+		deleteStatement = dbConnection.prepareStatement("UPDATE course SET ,isDeleted=? WHERE courseId=?");
 	}
 
 	@Override
@@ -112,7 +112,7 @@ public class CourseDAO extends DAOImpl<Course> {
 		}
 		return count;
 	}
-	
+
 	@Override
 	public void add(Course t) {
 		try {
