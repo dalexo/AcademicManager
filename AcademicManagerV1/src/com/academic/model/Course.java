@@ -1,4 +1,5 @@
 package com.academic.model;
+import java.util.List;
 
 public class Course {
 
@@ -12,6 +13,7 @@ public class Course {
 	private String startingDate;
 	private String endingDate;
 	private boolean isActive;
+	private List<String> teachers;
 
 	public Course() {
 		this.courseId = DEFAULT_COURSE_ID;
@@ -78,6 +80,14 @@ public class Course {
 
 	public void setActive(boolean isActive) {
 		this.isActive = isActive;
+	}
+	
+	public List<String> getTeachers() {
+		return teachers;
+	}
+
+	public void setTeachers(List<String> person) {
+		this.teachers = person;
 	}
 
 	@Override
