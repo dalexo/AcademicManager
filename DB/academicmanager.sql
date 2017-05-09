@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS `course` (
   `startingDate` date NOT NULL,
   `endingDate` date NOT NULL,
   `isActive` tinyint(1) NOT NULL,
-  `isDeleted` int(11) NOT NULL,	
+  `isDeleted`tinyint(1) NOT NULL,	
     PRIMARY KEY (`courseId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
