@@ -17,7 +17,9 @@ import java.sql.Connection;
 import com.academic.db.DAOImpl;
 import com.academic.db.dao.CourseDAO;
 import com.academic.db.dao.Dao;
+import com.academic.db.dao.PersonDAO;
 import com.academic.model.Course;
+import com.academic.model.Person;
 
 //Factory class to retrieve all DAOs
 public class DAOFactory {
@@ -25,6 +27,7 @@ public class DAOFactory {
 	// Constants
 	private static final String DB_URL = "jdbc:mysql://localhost/AcademicManager";
 	private static final String COURSE_DAO_KEY = "course.dao";
+	private static final String PERSON_DAO_KEY = "person.dao";
 
 	// Attributes
 	private Connection dbConnection;
@@ -63,6 +66,14 @@ public class DAOFactory {
 		}
 
 		return (Dao<Course>) daoTable.get(COURSE_DAO_KEY);
+	}
+	
+	public Dao<Person> getPersonDao() throws SQLException {
+		if (!daoTable.containsKey(PERSON_DAO_KEY)) {
+			daoTable.put(PERSON_DAO_KEY, new PersonDAO(dbConnection));
+		}
+		
+		return (Dao<Person>) daoTable.get(PERSON_DAO_KEY);
 	}
 
 	public void close() {
