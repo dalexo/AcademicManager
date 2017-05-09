@@ -1,6 +1,7 @@
 package com.academic.db.dao;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,6 +16,7 @@ public class CourseDAO extends DAOImpl<Course> {
 	private PreparedStatement selectByIdStatement;
 	private PreparedStatement selectAllStatement;
 	private PreparedStatement countStatement;
+	private PreparedStatement teachingStatement;
 	//CRUD
 	private PreparedStatement addStatement;
 	private PreparedStatement updateStatement;
@@ -30,14 +32,18 @@ public class CourseDAO extends DAOImpl<Course> {
 				ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 		countStatement = dbConnection.prepareStatement("SELECT COUNT(*) FROM course WHERE isDeleted=0;",
 		ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		
+		teachingStatement = dbConnection.prepareStatement(
+				"SELECT courseId,person.surname from teaching inner join person on teaching.personId = person.personId",
+				ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 
 		addStatement = dbConnection.prepareStatement(
 				"INSERT INTO course (courseId, title, cost, description, startingDate, endingDate, isActive, isDeleted) VALUES ('?','?','?','?','?','?','?','?')");
 
 		updateStatement = dbConnection.prepareStatement(
-				"UPDATE course SET title= ? , cost= ?, description= ?, startingDate= ?, endingDate= ? , isActive= ? WHERE courseId=?");
-
-		deleteStatement = dbConnection.prepareStatement("UPDATE course SET isDeleted=1 WHERE courseId=?");
+				"UPDATE course SET title=?,cost=?,description=?,startingDate=?,endingDate=?,isActive=? WHERE courseId= ?;");
+		
+		deleteStatement = dbConnection.prepareStatement("UPDATE course SET ,isDeleted=? WHERE courseId=?");
 	}
 
 	@Override
@@ -51,11 +57,12 @@ public class CourseDAO extends DAOImpl<Course> {
 			if (resultSet.first()) {
 				course.setCourseId(resultSet.getInt("courseId"));
 				course.setTitle(resultSet.getString("title"));
+				course.setCost(resultSet.getInt("cost"));
 				course.setDescription(resultSet.getString("description"));
 				course.setStartingDate(resultSet.getString("startingDate"));
 				course.setEndingDate(resultSet.getString("endingDate"));
 				course.setActive(resultSet.getBoolean("isActive"));
-
+				course.setTeachers((getTeachers(course.getCourseId())));
 			}
 			resultSet.close();
 		} catch (SQLException e) {
@@ -79,6 +86,7 @@ public class CourseDAO extends DAOImpl<Course> {
 				Course course = new Course();
 				course.setCourseId(resultSet.getInt("courseId"));
 				course.setTitle(resultSet.getString("title"));
+				course.setCost(resultSet.getInt("cost"));
 				course.setDescription(resultSet.getString("description"));
 				course.setStartingDate(resultSet.getString("startingDate"));
 				course.setEndingDate(resultSet.getString("endingDate"));
@@ -112,7 +120,7 @@ public class CourseDAO extends DAOImpl<Course> {
 		}
 		return count;
 	}
-
+	
 	@Override
 	public void add(Course t) {
 		try {
@@ -172,5 +180,28 @@ public class CourseDAO extends DAOImpl<Course> {
 			System.out.println("Could not close the DAO statements");
 			e.printStackTrace();
 		}
+	}
+	
+	private List<String> getTeachers(int id) {
+		List<String> result = new ArrayList<>();
+		try {
+			teachingStatement.setInt(1, id);
+			teachingStatement.execute();
+			ResultSet resultSet = teachingStatement.getResultSet();
+
+			while (resultSet.next()) {
+				if (id == (resultSet.getInt("courseId"))) {
+					result.add(resultSet.getString("person.surname"));
+
+				}
+
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
+
 	}
 }
