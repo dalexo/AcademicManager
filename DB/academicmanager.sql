@@ -61,6 +61,7 @@ CREATE TABLE IF NOT EXISTS `person` (
   `address` varchar(128) COLLATE utf8_bin NOT NULL,
   `taxNumber` varchar(128) COLLATE utf8_bin NOT NULL,
   `bankAccount` varchar(128) COLLATE utf8_bin NOT NULL,
+  `isDeleted`tinyint(1) NOT NULL,
   PRIMARY KEY(personId)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -84,6 +85,9 @@ INSERT INTO `person` (`personId`, `name`, `surname`, `type`, `dateOfBirth`, `sex
 (10, 'Tony', 'Montana', 'Teacher', '2048-02-13', 'Male', 'drugs@gmail.com', '6909001234', 'Cartel 9', '2134567890', 'GR0022375812093467'),
 (11, 'Luke', 'Skywalker', 'Admin', '1955-01-28', 'Male', 'jedi@gmail.com', '6932425261', 'Rebel Camp 4', '2341538753', 'GR238719094328734'),
 (12, 'Darth', 'Vader', 'Student', '1945-06-18', 'Male', 'sithlord@yahoo.com', '6974358721', 'Deathstar 10', '1452348790', '');
+
+
+ALTER TABLE `person` ADD COLUMN IF NOT EXISTS `isDeleted` int(11) NOT NULL default '0';
 
 -- --------------------------------------------------------
 
