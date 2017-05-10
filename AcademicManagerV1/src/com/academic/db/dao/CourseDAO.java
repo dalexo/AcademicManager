@@ -38,7 +38,7 @@ public class CourseDAO extends DAOImpl<Course> {
 				ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 
 		addStatement = dbConnection.prepareStatement(
-				"INSERT INTO course (courseId, title, cost, description, startingDate, endingDate, isActive, isDeleted) VALUES ('?','?','?','?','?','?','?','?')");
+				"INSERT INTO course (courseId, title, cost, description, startingDate, endingDate, isActive, isDeleted) VALUES ('null','?','?','?','?','?','?','0');");
 
 		updateStatement = dbConnection.prepareStatement(
 				"UPDATE course SET title=?,cost=?,description=?,startingDate=?,endingDate=?,isActive=? WHERE courseId= ?;");

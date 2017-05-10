@@ -22,22 +22,22 @@ public class PersonDAO extends DAOImpl<Person> {
 	public PersonDAO(Connection conn) throws SQLException {
 		super(conn);
 		// TODO Auto-generated constructor stub
-		selectByIdStatement = dbConnection.prepareStatement("SELECT personId,name,surname,type,dateOfBirth,email,phoneNumber,address,taxNumber,bankAccount,sex FROM person WHERE personId=?;",
+		selectByIdStatement = dbConnection.prepareStatement("SELECT personId,name,surname,type,dateOfBirth,email,phoneNumber,address,taxNumber,bankAccount,sex FROM person WHERE personId=? AND isDeleted=0;",
 				ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 		
-		selectAllStatement = dbConnection.prepareStatement("SELECT * FROM person;",
+		selectAllStatement = dbConnection.prepareStatement("SELECT * FROM person WHERE isDeleted=0;",
 				ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 		
-		countStatement = dbConnection.prepareStatement("SELECT COUNT(*) FROM person;",
+		countStatement = dbConnection.prepareStatement("SELECT COUNT(*) FROM person WHERE isDeleted=0;",
 				ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 
 		addStatement = dbConnection.prepareStatement(
-				"INSERT INTO person (personId,name,surname,type,dateOfBirth,email,phoneNumber,address,taxNumber,bankAccount,sex) VALUES (null, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
+				"INSERT INTO person (personId,name,surname,type,dateOfBirth,email,phoneNumber,address,taxNumber,bankAccount,sex,isDeleted) VALUES ('null','?','?','?','?','?','?','?','?','?','?','0');");
 
 		updateStatement = dbConnection.prepareStatement(
-				"UPDATE person SET name=?,surname=?,dateOfBirth=?,email=?,phoneNumber=?,address=?,taxnumber=?,bankAccount=?,sex=? WHERE personId= ?;");
+				"UPDATE person SET name=?,surname=?,dateOfBirth=?,email=?,phoneNumber=?,address=?,taxnumber=?,bankAccount=?,sex=? WHERE personId=?;");
 		
-		deleteStatement = dbConnection.prepareStatement("DELETE * FROM person WHERE personId=?");
+		deleteStatement = dbConnection.prepareStatement("UPDATE person SET isDeleted=1 WHERE personId=?;");
 	}
 
 	@Override
