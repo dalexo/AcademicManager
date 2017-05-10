@@ -43,7 +43,7 @@ public class CourseDAO extends DAOImpl<Course> {
 		updateStatement = dbConnection.prepareStatement(
 				"UPDATE course SET title=?,cost=?,description=?,startingDate=?,endingDate=?,isActive=? WHERE courseId= ?;");
 		
-		deleteStatement = dbConnection.prepareStatement("UPDATE course SET ,isDeleted=? WHERE courseId=?");
+		deleteStatement = dbConnection.prepareStatement("UPDATE course SET isDeleted=1 WHERE courseId=?");
 	}
 
 	@Override
