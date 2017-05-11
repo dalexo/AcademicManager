@@ -11,7 +11,7 @@
 DROP TABLE IF EXISTS course;
 
 CREATE TABLE IF NOT EXISTS `course` (
-  `courseId` tinyint(11) NOT NULL,
+  `courseId` int(11) NOT NULL,
   `title` varchar(128) COLLATE utf8_bin NOT NULL,
   `cost` int(11) NOT NULL,
   `description` varchar(256) COLLATE utf8_bin NOT NULL,
@@ -50,7 +50,7 @@ INSERT INTO `course` (`courseId`, `title`, `cost`, `description`, `startingDate`
 --
 
 CREATE TABLE IF NOT EXISTS `person` (
-  `personId` tinyint(11) NOT NULL,
+  `personId` int(11) NOT NULL,
   `name` varchar(128) COLLATE utf8_bin NOT NULL,
   `surname` varchar(128) COLLATE utf8_bin NOT NULL,
   `type` enum('Admin','Secretary','Teacher','Student') COLLATE utf8_bin NOT NULL,
@@ -118,12 +118,12 @@ INSERT INTO `teaching` (`personId`, `courseId`) VALUES
 -- AUTO_INCREMENT για πίνακα `course`
 --
 ALTER TABLE `course`
-  MODIFY `courseId` tinyint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `courseId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT για πίνακα `person`
 --
 ALTER TABLE `person`
-  MODIFY `personId` tinyint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `personId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 
 
