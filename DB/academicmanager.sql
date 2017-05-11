@@ -107,11 +107,11 @@ CREATE TABLE IF NOT EXISTS `teaching` (
 DELETE FROM teaching;
 
 INSERT INTO `teaching` (`personId`, `courseId`) VALUES
-(5, 1),
-(5, 3),
+(4, 1),
+(4, 3),
+(6, 2),
 (7, 2),
-(8, 2),
-(10, 3);
+(9, 3);
 
 
 
