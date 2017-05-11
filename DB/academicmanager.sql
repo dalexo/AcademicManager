@@ -11,7 +11,7 @@
 DROP TABLE IF EXISTS course;
 
 CREATE TABLE IF NOT EXISTS `course` (
-  `courseId` int(11) NOT NULL,
+  `courseId` tinyint(11) NOT NULL,
   `title` varchar(128) COLLATE utf8_bin NOT NULL,
   `cost` int(11) NOT NULL,
   `description` varchar(256) COLLATE utf8_bin NOT NULL,
@@ -41,7 +41,7 @@ INSERT INTO `course` (`courseId`, `title`, `cost`, `description`, `startingDate`
 --
 
 
-  ALTER TABLE `course` ADD COLUMN IF NOT EXISTS `isDeleted` int(11) NOT NULL default '0';
+  ALTER TABLE `course` ADD COLUMN IF NOT EXISTS `isDeleted` tinyint(11) NOT NULL default '0';
 
 -- --------------------------------------------------------
 
@@ -50,7 +50,7 @@ INSERT INTO `course` (`courseId`, `title`, `cost`, `description`, `startingDate`
 --
 
 CREATE TABLE IF NOT EXISTS `person` (
-  `personId` int(11) NOT NULL,
+  `personId` tinyint(11) NOT NULL,
   `name` varchar(128) COLLATE utf8_bin NOT NULL,
   `surname` varchar(128) COLLATE utf8_bin NOT NULL,
   `type` enum('Admin','Secretary','Teacher','Student') COLLATE utf8_bin NOT NULL,
@@ -87,7 +87,7 @@ INSERT INTO `person` (`personId`, `name`, `surname`, `type`, `dateOfBirth`, `sex
 (12, 'Darth', 'Vader', 'Student', '1945-06-18', 'Male', 'sithlord@yahoo.com', '6974358721', 'Deathstar 10', '1452348790', '');
 
 
-ALTER TABLE `person` ADD COLUMN IF NOT EXISTS `isDeleted` int(11) NOT NULL default '0';
+ALTER TABLE `person` ADD COLUMN IF NOT EXISTS `isDeleted` tinyint(11) NOT NULL default '0';
 
 -- --------------------------------------------------------
 
@@ -118,12 +118,12 @@ INSERT INTO `teaching` (`personId`, `courseId`) VALUES
 -- AUTO_INCREMENT για πίνακα `course`
 --
 ALTER TABLE `course`
-  MODIFY `courseId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `courseId` tinyint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT για πίνακα `person`
 --
 ALTER TABLE `person`
-  MODIFY `personId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `personId` tinyint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 
 
