@@ -48,7 +48,7 @@
 	
 	<div class="container-fluid">
 	 
-	 <form method="post" action="#" class="form-horizontal">
+	 <form method="post" action="./PersonSave.jsp?id=${person.getPersonId()}" class="form-horizontal">
 	 <div class="form-group">
        <label class="control-label col-sm-2" for="personId">Person ID:</label>
        <div class="col-sm-10">
@@ -82,7 +82,7 @@
       <div class="form-group">
        <label class="control-label col-sm-2" for="sex">Sex:</label>
     <div class="col-sm-10">
-      <select name="sex>">
+      <select name="sex">
       <option value="Male">Male</option>
       <c:set var="personSex" value="${person.getSex()}" />	 
       <option value="Female" <c:if test="${personSex == 'Female'}">
