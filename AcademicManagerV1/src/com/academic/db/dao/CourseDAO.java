@@ -131,7 +131,6 @@ public class CourseDAO extends DAOImpl<Course> {
 			addStatement.setString(5, t.getEndingDate());
 			addStatement.setBoolean(6, t.getActive());
 			addStatement.executeUpdate();
-			addStatement.close();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -149,7 +148,6 @@ public class CourseDAO extends DAOImpl<Course> {
 			updateStatement.setBoolean(6, t.getActive());
 			updateStatement.setInt(7, t.getCourseId());
 			updateStatement.executeUpdate();
-			updateStatement.close();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -163,7 +161,6 @@ public class CourseDAO extends DAOImpl<Course> {
 
 			deleteStatement.setInt(1, t.getCourseId());
 			deleteStatement.executeUpdate();
-			deleteStatement.close();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -176,6 +173,9 @@ public class CourseDAO extends DAOImpl<Course> {
 			this.selectAllStatement.close();
 			this.selectByIdStatement.close();
 			this.countStatement.close();
+			this.addStatement.close();
+			this.updateStatement.close();
+			this.deleteStatement.close();
 		} catch (SQLException e) {
 			System.out.println("Could not close the DAO statements");
 			e.printStackTrace();

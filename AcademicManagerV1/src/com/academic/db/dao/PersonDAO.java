@@ -138,7 +138,6 @@ public class PersonDAO extends DAOImpl<Person> {
 			addStatement.setString(9, t.getBankAccount());
 			addStatement.setString(10, t.getSex());
 			addStatement.executeUpdate();
-			addStatement.close();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -160,7 +159,6 @@ public class PersonDAO extends DAOImpl<Person> {
 			updateStatement.setString(9, t.getSex());
 			updateStatement.setInt(10, t.getPersonId());
 			updateStatement.executeUpdate();
-			updateStatement.close();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -174,7 +172,6 @@ public class PersonDAO extends DAOImpl<Person> {
 
 			deleteStatement.setInt(1, t.getPersonId());
 			deleteStatement.executeUpdate();
-			deleteStatement.close();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -188,6 +185,9 @@ public class PersonDAO extends DAOImpl<Person> {
 			this.selectByIdStatement.close();
 			this.selectAllStatement.close();
 			this.countStatement.close();
+			this.addStatement.close();
+			this.updateStatement.close();
+			this.deleteStatement.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			System.out.println("Could not close the person DAO statements");
