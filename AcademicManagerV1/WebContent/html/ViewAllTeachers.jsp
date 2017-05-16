@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@page
+	import="com.academic.db.*,com.academic.model.*,com.academic.db.dao.*,java.sql.*,java.util.*"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,15 +21,11 @@
 	<header>
 		<a href="./SecretaryMain.html">
 			<button class="btn btn-color" role="button">Back</button>
-		</a>
-		<a href="#">
-		<button class="btn btn-success pull-right">Add New Teacher</button>
+		</a> <a href="#">
+			<button class="btn btn-success pull-right">Add New Teacher</button>
 		</a>
 	</header>
 	<div class="div-body">
-		<%@page
-			import="com.academic.db.*,com.academic.model.*,com.academic.db.dao.*,java.sql.*,java.util.*"%>
-		<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 		<%
 			Dao<Person> personDao = null;
@@ -55,8 +54,7 @@
 							<c:set var="personType" value="${person.getType()}" />
 							<c:if test="${personType == 'Teacher'}">
 								<tr>
-									<td><a
-										href="./PersonForm.jsp?id=${person.getPersonId()}">
+									<td><a href="./PersonForm.jsp?id=${person.getPersonId()}">
 											<c:out value="${person.getName()}" /> <c:out
 												value="${person.getSurname()}" />
 									</a></td>

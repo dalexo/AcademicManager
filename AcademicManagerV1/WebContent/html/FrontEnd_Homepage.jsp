@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-
+<%@page
+			import="com.academic.db.*,com.academic.model.*,com.academic.db.dao.*,java.sql.*,java.util.*"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,9 +20,7 @@
 <body>
 	<header> </header>
 	<div class="div-body">
-		<%@page
-			import="com.academic.db.*,com.academic.model.*,com.academic.db.dao.*,java.sql.*,java.util.*"%>
-		<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+		
 
 		<%
 			Dao<Course> courseDao = null;

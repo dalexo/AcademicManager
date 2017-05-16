@@ -1,3 +1,7 @@
+<%@page
+	import="com.academic.db.*,com.academic.model.*,com.academic.db.dao.*,java.sql.*,java.util.*"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,9 +20,6 @@
 
 
 <body>
-	<%@page
-		import="com.academic.db.*,com.academic.model.*,com.academic.db.dao.*,java.sql.*,java.util.*"%>
-	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 	<%
 		int id = Integer.parseInt(request.getParameter("id"));
@@ -49,16 +50,14 @@
 		<div class="container-fluid">
 
 			<div class="form-group">
-				<label class="control-label col-sm-2">Course
-					ID:</label>
+				<label class="control-label col-sm-2">Course ID:</label>
 				<div class="col-sm-10">
-					<label class="form-control" ><c:out
+					<label class="form-control"><c:out
 							value="${course.getCourseId()}" /></label>
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-sm-2">Course
-					Title:</label>
+				<label class="control-label col-sm-2">Course Title:</label>
 				<div class="col-sm-10">
 					<label class="form-control"><c:out
 							value="${course.getTitle()}" /></label>
@@ -79,65 +78,62 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-sm-2">Starting
-					Date:</label>
+				<label class="control-label col-sm-2">Starting Date:</label>
 				<div class="col-sm-10">
 					<label class="form-control"><c:out
 							value="${course.getStartingDate()}" /></label>
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-sm-2">Ending
-					Date:</label>
+				<label class="control-label col-sm-2">Ending Date:</label>
 				<div class="col-sm-10">
 					<label class="form-control"><c:out
 							value="${course.getEndingDate()}" /></label>
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-sm-2">Course
-					Teachers:</label>
+				<label class="control-label col-sm-2">Course Teachers:</label>
 				<div class="col-sm-10">
 					<label class="form-control"><c:out
 							value="${course.getTeachers()}" /></label>
 				</div>
 			</div>
-          </div>
 		</div>
-		<footer>
-			<div class="container-fluid">
-				<div class="row">
-					<div class="col-sm-4">
-						<h3 class="text-center">
-							<a href="#">About</a>
-						</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-							sed do eiusmod tempor incididunt ut labore et dolore magna
-							aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-							ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-					</div>
-					<div class="col-sm-4">
-						<h3 class="text-center">
-							<a href="#">Useful Links</a>
-						</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-							sed do eiusmod tempor incididunt ut labore et dolore magna
-							aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-							ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-					</div>
-					<div class="col-sm-4">
-						<h3 class="text-center">
-							<a href="#">Contact Us</a>
-						</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-							sed do eiusmod tempor incididunt ut labore et dolore magna
-							aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-							ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-					</div>
+	</div>
+	<footer>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-4">
+					<h3 class="text-center">
+						<a href="#">About</a>
+					</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+						do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+						enim ad minim veniam, quis nostrud exercitation ullamco laboris
+						nisi ut aliquip ex ea commodo consequat.</p>
+				</div>
+				<div class="col-sm-4">
+					<h3 class="text-center">
+						<a href="#">Useful Links</a>
+					</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+						do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+						enim ad minim veniam, quis nostrud exercitation ullamco laboris
+						nisi ut aliquip ex ea commodo consequat.</p>
+				</div>
+				<div class="col-sm-4">
+					<h3 class="text-center">
+						<a href="#">Contact Us</a>
+					</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+						do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+						enim ad minim veniam, quis nostrud exercitation ullamco laboris
+						nisi ut aliquip ex ea commodo consequat.</p>
 				</div>
 			</div>
+		</div>
 
-		</footer>
+	</footer>
 </body>
 
 
