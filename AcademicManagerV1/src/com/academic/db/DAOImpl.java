@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 import com.academic.db.dao.Dao;
-import com.academic.model.Course;
 
 public abstract class DAOImpl<T> implements Dao<T> {
 
