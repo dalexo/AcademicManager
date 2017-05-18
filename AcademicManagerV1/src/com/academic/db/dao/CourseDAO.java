@@ -17,7 +17,7 @@ public class CourseDAO extends DAOImpl<Course> {
 	private PreparedStatement selectAllStatement;
 	private PreparedStatement countStatement;
 	private PreparedStatement teachingStatement;
-	//CRUD
+	// CRUD
 	private PreparedStatement addStatement;
 	private PreparedStatement updateStatement;
 	private PreparedStatement deleteStatement;
@@ -26,13 +26,13 @@ public class CourseDAO extends DAOImpl<Course> {
 		super(conn);
 		selectByIdStatement = dbConnection.prepareStatement(
 				"SELECT courseId, title, cost, description, startingDate, endingDate, isActive FROM course WHERE isDeleted=0 AND courseId=?;",
-		ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+				ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 		selectAllStatement = dbConnection.prepareStatement(
 				"SELECT courseId, title, cost, description, startingDate, endingDate, isActive FROM course WHERE isDeleted=0;",
 				ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 		countStatement = dbConnection.prepareStatement("SELECT COUNT(*) FROM course WHERE isDeleted=0;",
-		ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-		
+				ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+
 		teachingStatement = dbConnection.prepareStatement(
 				"SELECT courseId,person.surname from teaching inner join person on teaching.personId = person.personId",
 				ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
@@ -42,7 +42,7 @@ public class CourseDAO extends DAOImpl<Course> {
 
 		updateStatement = dbConnection.prepareStatement(
 				"UPDATE course SET title=?,cost=?,description=?,startingDate=?,endingDate=?,isActive=? WHERE courseId= ?;");
-		
+
 		deleteStatement = dbConnection.prepareStatement("UPDATE course SET isDeleted=1 WHERE courseId=?");
 	}
 
@@ -120,7 +120,7 @@ public class CourseDAO extends DAOImpl<Course> {
 		}
 		return count;
 	}
-	
+
 	@Override
 	public void add(Course t) {
 		try {
@@ -181,7 +181,7 @@ public class CourseDAO extends DAOImpl<Course> {
 			e.printStackTrace();
 		}
 	}
-	
+
 	private List<String> getTeachers(int id) {
 		List<String> result = new ArrayList<>();
 		try {
@@ -202,9 +202,5 @@ public class CourseDAO extends DAOImpl<Course> {
 			e.printStackTrace();
 		}
 		return result;
-
 	}
-
-
-	
 }
