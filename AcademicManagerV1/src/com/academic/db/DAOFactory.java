@@ -18,6 +18,7 @@ import com.academic.db.DAOImpl;
 import com.academic.db.dao.CourseDAO;
 import com.academic.db.dao.Dao;
 import com.academic.db.dao.PersonDAO;
+import com.academic.db.dao.TeacherDao;
 import com.academic.model.Course;
 import com.academic.model.Person;
 
@@ -74,6 +75,14 @@ public class DAOFactory {
 		}
 		
 		return (Dao<Person>) daoTable.get(PERSON_DAO_KEY);
+	}
+	
+	public TeacherDao getTeacherDao() throws SQLException {
+		if (!daoTable.containsKey(PERSON_DAO_KEY)) {
+			daoTable.put(PERSON_DAO_KEY, new PersonDAO(dbConnection));
+		}
+		
+		return (TeacherDao) daoTable.get(PERSON_DAO_KEY);
 	}
 
 	public void close() {

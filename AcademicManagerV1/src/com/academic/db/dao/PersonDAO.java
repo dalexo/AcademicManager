@@ -10,24 +10,27 @@ import com.academic.db.DAOImpl;
 import com.academic.model.Person;
 import java.sql.PreparedStatement;
 
-public class PersonDAO extends DAOImpl<Person> {
+public class PersonDAO extends DAOImpl<Person> implements TeacherDao {
 	private PreparedStatement selectByIdStatement;
 	private PreparedStatement selectAllStatement;
 	private PreparedStatement countStatement;
-	//CRUD
+	// CRUD
 	private PreparedStatement addStatement;
 	private PreparedStatement updateStatement;
 	private PreparedStatement deleteStatement;
+	private PreparedStatement getTeachersStatement;
+	private PreparedStatement selectTeacherByIdStatement;
 
-	public PersonDAO(Connection conn) throws SQLException {
+	public PersonDAO(Connection conn) throws SQLException  {
 		super(conn);
 		// TODO Auto-generated constructor stub
-		selectByIdStatement = dbConnection.prepareStatement("SELECT personId,name,surname,type,dateOfBirth,email,phoneNumber,address,taxNumber,bankAccount,sex FROM person WHERE personId=? AND isDeleted=0;",
+		selectByIdStatement = dbConnection.prepareStatement(
+				"SELECT personId,name,surname,type,dateOfBirth,email,phoneNumber,address,taxNumber,bankAccount,sex FROM person WHERE personId=? AND isDeleted=0;",
 				ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-		
+
 		selectAllStatement = dbConnection.prepareStatement("SELECT * FROM person WHERE isDeleted=0;",
 				ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-		
+
 		countStatement = dbConnection.prepareStatement("SELECT COUNT(*) FROM person WHERE isDeleted=0;",
 				ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 
@@ -36,8 +39,17 @@ public class PersonDAO extends DAOImpl<Person> {
 
 		updateStatement = dbConnection.prepareStatement(
 				"UPDATE person SET name=?,surname=?,dateOfBirth=?,email=?,phoneNumber=?,address=?,taxnumber=?,bankAccount=?,sex=? WHERE personId=?;");
-		
+
 		deleteStatement = dbConnection.prepareStatement("UPDATE person SET isDeleted=1 WHERE personId=?;");
+
+		getTeachersStatement = dbConnection.prepareStatement(
+				"SELECT * FROM person WHERE type='Teacher' AND isDeleted=0;", ResultSet.TYPE_SCROLL_INSENSITIVE,
+				ResultSet.CONCUR_READ_ONLY);
+		
+		selectTeacherByIdStatement = dbConnection.prepareStatement(
+				"SELECT personId,name,surname,type,dateOfBirth,email,phoneNumber,address,taxNumber,bankAccount,sex FROM person WHERE type = 'Teacher' AND personId=? AND isDeleted=0;",
+				ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		
 	}
 
 	@Override
@@ -48,7 +60,7 @@ public class PersonDAO extends DAOImpl<Person> {
 			selectByIdStatement.setInt(1, id);
 			selectByIdStatement.execute();
 			ResultSet resultSet = selectByIdStatement.getResultSet();
-			if(resultSet.first()){
+			if (resultSet.first()) {
 				person.setPersonId(resultSet.getInt("personId"));
 				person.setName(resultSet.getString("name"));
 				person.setSurname(resultSet.getString("surname"));
@@ -78,7 +90,7 @@ public class PersonDAO extends DAOImpl<Person> {
 		List<Person> personList = new ArrayList<Person>();
 		try {
 			resultSet = selectAllStatement.executeQuery();
-			while( resultSet.next() ){
+			while (resultSet.next()) {
 				Person person = new Person();
 				person.setPersonId(resultSet.getInt("personId"));
 				person.setName(resultSet.getString("name"));
@@ -103,16 +115,78 @@ public class PersonDAO extends DAOImpl<Person> {
 		return personList;
 	}
 
+	public List<Person> getTeachers() {
+		ResultSet resultSet;
+		List<Person> teacherList = new ArrayList<Person>();
+		try {
+			resultSet = getTeachersStatement.executeQuery();
+			while (resultSet.next()) {
+				Person person = new Person();
+				person.setPersonId(resultSet.getInt("personId"));
+				person.setName(resultSet.getString("name"));
+				person.setSurname(resultSet.getString("surname"));
+				person.setType(resultSet.getString("type"));
+				person.setDateOfBirth(resultSet.getString("dateOfBirth"));
+				person.setEmail(resultSet.getString("email"));
+				person.setPhoneNumber(resultSet.getString("phoneNumber"));
+				person.setAddress(resultSet.getString("address"));
+				person.setTaxNumber(resultSet.getString("taxNumber"));
+				person.setBankAccount(resultSet.getString("bankAccount"));
+				person.setSex(resultSet.getString("sex"));
+				teacherList.add(person);
+			}
+			resultSet.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Caught SQLException while trying to retrieve all persons");
+			e.printStackTrace();
+			return null;
+		}
+		return teacherList;
+
+	}
+	
+	@Override
+	public Person getTeacher(int id) {
+		// TODO Auto-generated method stub
+		Person person = new Person();
+		try {
+			selectTeacherByIdStatement.setInt(1, id);
+			selectTeacherByIdStatement.execute();
+			ResultSet resultSet = selectTeacherByIdStatement.getResultSet();
+			if (resultSet.first()) {
+				person.setPersonId(resultSet.getInt("personId"));
+				person.setName(resultSet.getString("name"));
+				person.setSurname(resultSet.getString("surname"));
+				person.setType(resultSet.getString("type"));
+				person.setDateOfBirth(resultSet.getString("dateOfBirth"));
+				person.setEmail(resultSet.getString("email"));
+				person.setPhoneNumber(resultSet.getString("phoneNumber"));
+				person.setAddress(resultSet.getString("address"));
+				person.setTaxNumber(resultSet.getString("taxNumber"));
+				person.setBankAccount(resultSet.getString("bankAccount"));
+				person.setSex(resultSet.getString("sex"));
+			}
+			resultSet.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Caught SQLException while executing get by id: " + id);
+			e.printStackTrace();
+			return null;
+		}
+		return person;
+	}
+
 	@Override
 	public int countAll() {
 		// TODO Auto-generated method stub
-		int count=0;
+		int count = 0;
 		ResultSet resultSet;
-		
+
 		try {
 			resultSet = countStatement.executeQuery();
-			if( resultSet.first() ){
-				count = resultSet.getInt(1);		
+			if (resultSet.first()) {
+				count = resultSet.getInt(1);
 			}
 			resultSet.close();
 		} catch (SQLException e) {
@@ -123,6 +197,7 @@ public class PersonDAO extends DAOImpl<Person> {
 		}
 		return count;
 	}
+
 	@Override
 	public void add(Person t) {
 		// TODO Auto-generated method stub
@@ -188,12 +263,13 @@ public class PersonDAO extends DAOImpl<Person> {
 			this.addStatement.close();
 			this.updateStatement.close();
 			this.deleteStatement.close();
+			this.getTeachersStatement.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			System.out.println("Could not close the person DAO statements");
 			e.printStackTrace();
 		}
-		
+
 	}
 
 }
