@@ -192,12 +192,19 @@ public class CourseDAO extends DAOImpl<Course> {
 			while (resultSet.next()) {
 				if (id == (resultSet.getInt("courseId"))) {
 					result.add(resultSet.getString("person.surname"));
+
 				}
+
 			}
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return result;
-	}	
+
+	}
+
+
+	
 }
