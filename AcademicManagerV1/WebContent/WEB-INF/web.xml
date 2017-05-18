@@ -7,6 +7,24 @@
 	<welcome-file-list>
 		<welcome-file>html/FrontEnd_Homepage.jsp</welcome-file>
 	</welcome-file-list>
+	<servlet>
+		<servlet-name>RestAcademicManager</servlet-name>
+		<servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+
+		<!-- Register JAX-RS Application, if needed. -->
+		<init-param>
+			<param-name>javax.ws.rs.Application</param-name>
+			<param-value>com.academic.rest.RestApplication</param-value>
+		</init-param>
+
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>RestAcademicManager</servlet-name>
+		<url-pattern>/rs/*</url-pattern>
+	</servlet-mapping>
+	
 	<resource-ref>
 		<description>DB Connection</description>
 		<res-ref-name>AcademicManagerDB</res-ref-name>
