@@ -78,7 +78,7 @@ CREATE TABLE IF NOT EXISTS `person` (
 
 INSERT INTO `person` (`name`, `surname`, `type`, `dateOfBirth`, `sex`, `email`, `phoneNumber`, `address`, `taxNumber`, `bankAccount`) VALUES
 ('Leonardo', 'Di Caprio', 'Student', '1972-11-25', 'Male', 'leodic@gmail.com', '6908585672', 'Sunset Boulevard 52', '2134567890', ''),
-('Michael', 'Jackson', 'Student', '1965-09-19', 'Male', 'micjac@gmail.com', '6906969690', 'Kiriakidou 11', '2108156890', ''),
+('Michael', 'Jordan', 'Student', '1965-09-19', 'Male', 'micjor@gmail.com', '6906969690', 'Kiriakidou 11', '2108156890', ''),
 ('George', 'Michael', 'Student', '1964-07-09', 'Male', 'geomic@gmail.com', '2108547852', 'Kolokotroni 55', '2103897345', ''),
 ('David', 'Bowie', 'Teacher', '1957-12-11', 'Male', 'dbowie@yahoo.com', '2106711512', 'Panepistimiou 13', '2101981123', 'GR69005300000098762'),
 ('Whitney', 'Hiouston', 'Secretary', '1966-05-31', 'Female', 'whitneyh@hotmail.com', '6908877651', 'Grammou 6', '2118890768', 'GR320058009011110000872'),
