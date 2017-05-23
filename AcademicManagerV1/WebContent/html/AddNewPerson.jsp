@@ -6,7 +6,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <%
-	int id = Integer.parseInt(request.getParameter("id"));
 	String type = request.getParameter("type");
 	String name = request.getParameter("name");
 	String surname = request.getParameter("surname");
@@ -32,6 +31,7 @@
 	Person p = new Person();
 	p.setName(name);
 	p.setSurname(surname);
+	p.setType(type);
 	p.setDateOfBirth(dateOfBirth);
 	p.setSex(sex);
 	p.setEmail(email);
@@ -39,8 +39,8 @@
 	p.setAddress(address);
 	p.setTaxNumber(taxNumber);
 	p.setBankAccount(bankAccount);
-	p.setPersonId(id);
-	personDao.update(p);
+	
+	personDao.add(p);
 %>
 
 <%

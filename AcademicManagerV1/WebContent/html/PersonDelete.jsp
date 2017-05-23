@@ -8,15 +8,6 @@
 <%
 	int id = Integer.parseInt(request.getParameter("id"));
 	String type = request.getParameter("type");
-	String name = request.getParameter("name");
-	String surname = request.getParameter("surname");
-	String dateOfBirth = request.getParameter("dateOfBirth");
-	String sex = request.getParameter("sex");
-	String email = request.getParameter("email");
-	String phoneNumber = request.getParameter("phoneNumber");
-	String address = request.getParameter("address");
-	String taxNumber = request.getParameter("taxNumber");
-	String bankAccount = request.getParameter("bankAccount");
 
 	Dao<Person> personDao = null;
 
@@ -30,17 +21,9 @@
 	}
 
 	Person p = new Person();
-	p.setName(name);
-	p.setSurname(surname);
-	p.setDateOfBirth(dateOfBirth);
-	p.setSex(sex);
-	p.setEmail(email);
-	p.setPhoneNumber(phoneNumber);
-	p.setAddress(address);
-	p.setTaxNumber(taxNumber);
-	p.setBankAccount(bankAccount);
+
 	p.setPersonId(id);
-	personDao.update(p);
+	personDao.delete(p);
 %>
 
 <%
