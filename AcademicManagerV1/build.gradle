@@ -1,0 +1,27 @@
+apply plugin :'java'
+apply plugin :'war'
+
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+
+compile group: 'javax.servlet', name: 'jstl', version: '1.2'
+compile group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '1.5.8'
+compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.40'
+compile group: 'org.apache.tomcat', name: 'tomcat-catalina', version: '8.5.11'
+compile group: 'javax.websocket', name: 'javax.websocket-api', version: '1.1'
+compile group: 'org.apache.maven', name: 'maven-plugin-api', version: '2.2.1'
+
+}
+
+sourceSets{
+  main{
+    java{
+      srcDir('src')
+    }
+  }
+}
+
+project.webAppDirName = 'WebContent'
