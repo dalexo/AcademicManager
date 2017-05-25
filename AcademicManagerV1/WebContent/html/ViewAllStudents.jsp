@@ -22,7 +22,7 @@
 	<header>
 		<a href="./SecretaryMain.html">
 			<button class="btn btn-color" role="button">Back</button>
-		</a> <a href="#">
+		</a> <a href="./NewPersonForm.jsp?type=Student">
 			<button class="btn btn-success pull-right">Add New Student</button>
 		</a>
 	</header>

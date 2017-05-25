@@ -89,6 +89,10 @@ Dropdown Button
 	font-weight: bold;
 }
 
+.btn-space {
+	margin-right: 10px;
+}
+
 .border {
 	border-color: black;
 	border-width: 10px;
