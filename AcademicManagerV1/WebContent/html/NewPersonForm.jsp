@@ -20,10 +20,6 @@
 
 
 <body>
-	<%
-		String type = request.getParameter("type");
-	%>
-
 	<header>
 
 		<button class="btn btn-color" role="button" value="Back"
