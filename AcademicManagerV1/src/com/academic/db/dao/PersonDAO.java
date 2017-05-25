@@ -35,7 +35,7 @@ public class PersonDAO extends DAOImpl<Person> implements TeacherDao {
 				ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 
 		addStatement = dbConnection.prepareStatement(
-				"INSERT INTO person SET name=?,surname=?,type=?,dateOfBirth=?,email=?,phoneNumber=?,address=?,taxnumber=?,bankAccount=?,sex=?;");
+				"INSERT INTO person (name,surname,type,dateOfBirth,email,phoneNumber,address,taxNumber,bankAccount,sex) VALUES (?,?,?,?,?,?,?,?,?,?);");
 
 		updateStatement = dbConnection.prepareStatement(
 				"UPDATE person SET name=?,surname=?,dateOfBirth=?,email=?,phoneNumber=?,address=?,taxnumber=?,bankAccount=?,sex=? WHERE personId=?;");
