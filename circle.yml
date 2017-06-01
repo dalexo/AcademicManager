@@ -5,6 +5,10 @@ machine:
   environment:
     TERM: dumb
 
+dependencies:
+    pre:
+        - chmod +x gradlew
+
 general:
   branches:
     only:
