@@ -2,37 +2,32 @@ package com.academic.model;
 
 public class Person {
 
-	public static final int DEFAULT_PERSON_TYPE = -1;
 	public static final int DEFAULT_PERSON_ID = 0;
 
 	private int personId;
 	private String name;
 	private String surname;
-	private int personType;
+	private String type;
 	private String dateOfBirth;
 	private String email;
 	private String phoneNumber;
 	private String address;
 	private String taxNumber;
 	private String bankAccount;
-	private String username;
-	private String password;
-	private boolean sex;
+	private String sex;
 
 	public Person() {
-		this.personType = DEFAULT_PERSON_TYPE;
+		this.type = "";
 		this.personId = DEFAULT_PERSON_ID;
 		this.name = "";
-		this.username = "";
+		this.surname = "";
 		this.dateOfBirth = "";
-		this.sex = false;
+		this.sex = "";
 		this.email = "";
 		this.phoneNumber = "";
 		this.address = "";
 		this.taxNumber = "";
 		this.bankAccount = "";
-		this.username = "";
-		this.password = "";
 
 	}
 
@@ -44,12 +39,12 @@ public class Person {
 		this.personId = personId;
 	}
 
-	public int getPersonType() {
-		return personType;
+	public String getType() {
+		return type;
 	}
 
-	public void setPersonType(int personType) {
-		this.personType = personType;
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	public String getName() {
@@ -76,20 +71,12 @@ public class Person {
 		return dateOfBirth;
 	}
 
-	public boolean isMale() {
-		return this.sex == true;
+	public String getSex() {
+		return sex;
 	}
 
-	public void setisMale() {
-		this.sex = true;
-	}
-
-	public boolean isFemale() {
-		return this.sex == false;
-	}
-
-	public void setisFemale() {
-		this.sex = false;
+	public void setSex(String sex) {
+		this.sex = sex;
 	}
 
 	public String getEmail() {
@@ -132,29 +119,13 @@ public class Person {
 		this.bankAccount = bankAccount;
 	}
 
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
 
 	@Override
 	public String toString() {
 		return "Person[personId = " + personId + ",  name: " + name + ", surname: " + surname + ", personType: "
-				+ personType + ", dateOfBirth: " + dateOfBirth + ", sex: " + isMale() + ", sex: " + isFemale()
+				+ type + ", dateOfBirth: " + dateOfBirth + ", sex: " + sex
 				+ ", email: " + email + ", phoneNumber: " + phoneNumber + ", address:" + address + ", taxNumber:"
-				+ taxNumber + ", bankAccount: " + bankAccount + ", username: " + username + ", password:" + password
-				+ "]";
+				+ taxNumber + ", bankAccount: " + bankAccount + "]";
 
 	}
 }
