@@ -22,7 +22,7 @@ public class Course {
 		this.description = "";
 		this.startingDate = "";
 		this.endingDate = "";
-		this.isActive = false
+		this.isActive = false;
 
 	}
 
