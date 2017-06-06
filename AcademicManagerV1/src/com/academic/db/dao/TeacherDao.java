@@ -9,5 +9,7 @@ public interface TeacherDao extends Dao<Person> {
 	public List<Person> getTeachers();
 	
 	public Person getTeacher(int id);
+	
+	public List<Person> getTeachersByCourseId(int id);
 
 }
