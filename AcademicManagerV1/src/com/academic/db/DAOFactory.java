@@ -16,6 +16,7 @@ import javax.sql.DataSource;
 import java.sql.Connection;
 import com.academic.db.DAOImpl;
 import com.academic.db.dao.CourseDAO;
+import com.academic.db.dao.CourseRestDAO;
 import com.academic.db.dao.Dao;
 import com.academic.db.dao.PersonDAO;
 import com.academic.db.dao.TeacherDao;
@@ -83,6 +84,14 @@ public class DAOFactory {
 		}
 		
 		return (TeacherDao) daoTable.get(PERSON_DAO_KEY);
+	}
+	
+	public CourseRestDAO getCourseRestDao() throws SQLException {
+		if (!daoTable.containsKey(COURSE_DAO_KEY)) {
+			daoTable.put(COURSE_DAO_KEY, new CourseDAO(dbConnection));
+		}
+		
+		return (CourseDAO) daoTable.get(COURSE_DAO_KEY);
 	}
 
 	public void close() {

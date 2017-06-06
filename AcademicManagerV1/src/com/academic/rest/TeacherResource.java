@@ -13,6 +13,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import com.academic.db.DAOFactory;
+import com.academic.model.Course;
 import com.academic.model.Person;
 
 @Path("teachers")
@@ -41,6 +42,15 @@ public class TeacherResource {
 		}
 
 		return Response.status(Status.FOUND).entity(person).build();
+	}
+	
+	@GET
+	@Path("{id}/courses")
+public List<Course> getTeacherCourses(@PathParam("id") int id) throws ClassNotFoundException, SQLException {
+		
+		List<Course> courses = DAOFactory.getInstance().getCourseRestDao().getCoursesByTeacherId(id);
+		
+		return courses;
 	}
 
 }
