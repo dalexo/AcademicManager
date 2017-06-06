@@ -10,6 +10,7 @@ import java.util.List;
 
 import com.academic.db.DAOImpl;
 import com.academic.model.Course;
+import com.academic.utils.Logger;
 
 public class CourseDAO extends DAOImpl<Course> implements CourseRestDAO {
 
@@ -72,8 +73,8 @@ public class CourseDAO extends DAOImpl<Course> implements CourseRestDAO {
 			}
 			resultSet.close();
 		} catch (SQLException e) {
-			System.out.println("Caught SQLException while executing get by id: " + id);
-			e.printStackTrace();
+			Logger.logDebug("Caught SQLException while executing get by id: " + id);
+			Logger.logException(e);
 			return null;
 		}
 
@@ -102,8 +103,8 @@ public class CourseDAO extends DAOImpl<Course> implements CourseRestDAO {
 
 			resultSet.close();
 		} catch (SQLException e) {
-			System.out.println("Caught SQLException while trying to retrieve all courses");
-			e.printStackTrace();
+			Logger.logDebug("Caught SQLException while trying to retrieve all courses");
+			Logger.logException(e);
 			return null;
 		}
 
@@ -120,8 +121,8 @@ public class CourseDAO extends DAOImpl<Course> implements CourseRestDAO {
 			}
 			resultSet.close();
 		} catch (SQLException e) {
-			System.out.println("Caught SQLException while counting courses");
-			e.printStackTrace();
+			Logger.logDebug("Caught SQLException while counting courses");
+			Logger.logException(e);
 			return -1;
 		}
 		return count;
@@ -139,7 +140,7 @@ public class CourseDAO extends DAOImpl<Course> implements CourseRestDAO {
 			addStatement.executeUpdate();
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.logException(e);
 		}
 	}
 
@@ -156,7 +157,7 @@ public class CourseDAO extends DAOImpl<Course> implements CourseRestDAO {
 			updateStatement.executeUpdate();
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.logException(e);
 		}
 	}
 
@@ -169,7 +170,7 @@ public class CourseDAO extends DAOImpl<Course> implements CourseRestDAO {
 			deleteStatement.executeUpdate();
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.logException(e);
 		}
 	}
 
@@ -183,8 +184,8 @@ public class CourseDAO extends DAOImpl<Course> implements CourseRestDAO {
 			this.updateStatement.close();
 			this.deleteStatement.close();
 		} catch (SQLException e) {
-			System.out.println("Could not close the DAO statements");
-			e.printStackTrace();
+			Logger.logDebug("Could not close the DAO statements");
+			Logger.logException(e);
 		}
 	}
 
@@ -205,7 +206,7 @@ public class CourseDAO extends DAOImpl<Course> implements CourseRestDAO {
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Logger.logException(e);
 		}
 		return result;
 	}
@@ -233,8 +234,8 @@ public class CourseDAO extends DAOImpl<Course> implements CourseRestDAO {
 
 			resultSet.close();
 		} catch (SQLException e) {
-			System.out.println("Caught SQLException while trying to retrieve all courses");
-			e.printStackTrace();
+			Logger.logDebug("Caught SQLException while trying to retrieve all courses");
+			Logger.logException(e);
 			return null;
 		}
 
