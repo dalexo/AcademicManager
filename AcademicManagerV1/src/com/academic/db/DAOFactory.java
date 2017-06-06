@@ -22,6 +22,7 @@ import com.academic.db.dao.PersonDAO;
 import com.academic.db.dao.TeacherDao;
 import com.academic.model.Course;
 import com.academic.model.Person;
+import com.academic.utils.Logger;
 
 //Factory class to retrieve all DAOs
 public class DAOFactory {
@@ -48,7 +49,7 @@ public class DAOFactory {
 			ds = (DataSource) ctx.lookup("java:/comp/env/AcademicManagerDB");
 			dbConnection = ds.getConnection();
 		} catch (NamingException e) {
-			e.printStackTrace();
+			Logger.logException(e);
 		}
 
 		daoTable = new HashMap<String, DAOImpl>();
@@ -105,8 +106,8 @@ public class DAOFactory {
 		try {
 			this.dbConnection.close();
 		} catch (SQLException e) {
-			System.out.println("Could not close connection to database");
-			e.printStackTrace();
+			Logger.logDebug("Could not close connection to database");
+			Logger.logException(e);
 		}
 	}
 }

@@ -8,6 +8,8 @@ import java.util.List;
 
 import com.academic.db.DAOImpl;
 import com.academic.model.Person;
+import com.academic.utils.Logger;
+
 import java.sql.PreparedStatement;
 
 public class PersonDAO extends DAOImpl<Person> implements TeacherDao {
@@ -81,8 +83,8 @@ public class PersonDAO extends DAOImpl<Person> implements TeacherDao {
 			resultSet.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			System.out.println("Caught SQLException while executing get by id: " + id);
-			e.printStackTrace();
+			Logger.logDebug("Caught SQLException while executing get by id: " + id);
+			Logger.logException(e);
 			return null;
 		}
 		return person;
@@ -113,8 +115,8 @@ public class PersonDAO extends DAOImpl<Person> implements TeacherDao {
 			resultSet.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			System.out.println("Caught SQLException while trying to retrieve all persons");
-			e.printStackTrace();
+			Logger.logDebug("Caught SQLException while trying to retrieve all persons");
+			Logger.logException(e);
 			return null;
 		}
 		return personList;
@@ -144,8 +146,8 @@ public class PersonDAO extends DAOImpl<Person> implements TeacherDao {
 			resultSet.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			System.out.println("Caught SQLException while trying to retrieve all persons");
-			e.printStackTrace();
+			Logger.logDebug("Caught SQLException while trying to retrieve all persons");
+			Logger.logException(e);
 			return null;
 		}
 		return teacherList;
@@ -176,8 +178,8 @@ public class PersonDAO extends DAOImpl<Person> implements TeacherDao {
 			resultSet.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			System.out.println("Caught SQLException while executing get by id: " + id);
-			e.printStackTrace();
+			Logger.logDebug("Caught SQLException while executing get by id: " + id);
+			Logger.logException(e);
 			return null;
 		}
 		return person;
@@ -208,8 +210,8 @@ public class PersonDAO extends DAOImpl<Person> implements TeacherDao {
 			resultSet.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			System.out.println("Caught SQLException while trying to retrieve all teachers");
-			e.printStackTrace();
+			Logger.logDebug("Caught SQLException while trying to retrieve all teachers");
+			Logger.logException(e);
 			return null;
 		}
 		return teacherList;
@@ -230,8 +232,8 @@ public class PersonDAO extends DAOImpl<Person> implements TeacherDao {
 			resultSet.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			System.out.println("Caught SQLException while counting persons");
-			e.printStackTrace();
+			Logger.logDebug("Caught SQLException while counting persons");
+			Logger.logException(e);
 			return -1;
 		}
 		return count;
@@ -254,7 +256,7 @@ public class PersonDAO extends DAOImpl<Person> implements TeacherDao {
 			addStatement.executeUpdate();
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.logException(e);
 		}
 	}
 
@@ -275,7 +277,7 @@ public class PersonDAO extends DAOImpl<Person> implements TeacherDao {
 			updateStatement.executeUpdate();
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.logException(e);
 		}
 	}
 
@@ -288,7 +290,7 @@ public class PersonDAO extends DAOImpl<Person> implements TeacherDao {
 			deleteStatement.executeUpdate();
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.logException(e);
 		}
 	}
 
@@ -306,8 +308,8 @@ public class PersonDAO extends DAOImpl<Person> implements TeacherDao {
 			this.selectTeacherByIdStatement.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			System.out.println("Could not close the person DAO statements");
-			e.printStackTrace();
+			Logger.logDebug("Could not close the person DAO statements");
+			Logger.logException(e);
 		}
 
 	}
