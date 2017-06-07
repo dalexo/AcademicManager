@@ -1,0 +1,15 @@
+machine:
+  java:
+    version:
+      oraclejdk8
+  environment:
+    TERM: dumb
+
+dependencies:
+    pre:
+        - chmod +x gradlew
+
+general:
+  branches:
+    only:
+      - master # only build/deploy from master

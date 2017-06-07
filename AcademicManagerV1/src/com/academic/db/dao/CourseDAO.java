@@ -10,13 +10,15 @@ import java.util.List;
 
 import com.academic.db.DAOImpl;
 import com.academic.model.Course;
+import com.academic.utils.Logger;
 
-public class CourseDAO extends DAOImpl<Course> {
+public class CourseDAO extends DAOImpl<Course> implements CourseRestDAO {
 
 	private PreparedStatement selectByIdStatement;
 	private PreparedStatement selectAllStatement;
 	private PreparedStatement countStatement;
 	private PreparedStatement teachingStatement;
+	private PreparedStatement selectCoursesByTeacherId;
 	// CRUD
 	private PreparedStatement addStatement;
 	private PreparedStatement updateStatement;
@@ -44,6 +46,11 @@ public class CourseDAO extends DAOImpl<Course> {
 				"UPDATE course SET title=?,cost=?,description=?,startingDate=?,endingDate=?,isActive=? WHERE courseId= ?;");
 
 		deleteStatement = dbConnection.prepareStatement("UPDATE course SET isDeleted=1 WHERE courseId=?");
+	
+		selectCoursesByTeacherId = dbConnection.prepareStatement(
+				"SELECT course.* from course INNER JOIN teaching on teaching.courseId = course.courseId WHERE personId=?;",
+				ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+	
 	}
 
 	@Override
@@ -66,8 +73,8 @@ public class CourseDAO extends DAOImpl<Course> {
 			}
 			resultSet.close();
 		} catch (SQLException e) {
-			System.out.println("Caught SQLException while executing get by id: " + id);
-			e.printStackTrace();
+			Logger.logDebug("Caught SQLException while executing get by id: " + id);
+			Logger.logException(e);
 			return null;
 		}
 
@@ -96,8 +103,8 @@ public class CourseDAO extends DAOImpl<Course> {
 
 			resultSet.close();
 		} catch (SQLException e) {
-			System.out.println("Caught SQLException while trying to retrieve all courses");
-			e.printStackTrace();
+			Logger.logDebug("Caught SQLException while trying to retrieve all courses");
+			Logger.logException(e);
 			return null;
 		}
 
@@ -114,8 +121,8 @@ public class CourseDAO extends DAOImpl<Course> {
 			}
 			resultSet.close();
 		} catch (SQLException e) {
-			System.out.println("Caught SQLException while counting courses");
-			e.printStackTrace();
+			Logger.logDebug("Caught SQLException while counting courses");
+			Logger.logException(e);
 			return -1;
 		}
 		return count;
@@ -133,7 +140,7 @@ public class CourseDAO extends DAOImpl<Course> {
 			addStatement.executeUpdate();
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.logException(e);
 		}
 	}
 
@@ -150,7 +157,7 @@ public class CourseDAO extends DAOImpl<Course> {
 			updateStatement.executeUpdate();
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.logException(e);
 		}
 	}
 
@@ -163,7 +170,7 @@ public class CourseDAO extends DAOImpl<Course> {
 			deleteStatement.executeUpdate();
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.logException(e);
 		}
 	}
 
@@ -177,8 +184,8 @@ public class CourseDAO extends DAOImpl<Course> {
 			this.updateStatement.close();
 			this.deleteStatement.close();
 		} catch (SQLException e) {
-			System.out.println("Could not close the DAO statements");
-			e.printStackTrace();
+			Logger.logDebug("Could not close the DAO statements");
+			Logger.logException(e);
 		}
 	}
 
@@ -199,8 +206,39 @@ public class CourseDAO extends DAOImpl<Course> {
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Logger.logException(e);
 		}
 		return result;
+	}
+	
+	public List<Course> getCoursesByTeacherId(int id) {
+		
+		ResultSet resultSet;
+		List<Course> courses = new ArrayList<>();
+
+		try {
+			selectCoursesByTeacherId.setInt(1, id);
+			resultSet = selectCoursesByTeacherId.executeQuery();
+
+			while (resultSet.next()) {
+				Course course = new Course();
+				course.setCourseId(resultSet.getInt("courseId"));
+				course.setTitle(resultSet.getString("title"));
+				course.setCost(resultSet.getInt("cost"));
+				course.setDescription(resultSet.getString("description"));
+				course.setStartingDate(resultSet.getString("startingDate"));
+				course.setEndingDate(resultSet.getString("endingDate"));
+				course.setActive(resultSet.getBoolean("isActive"));
+				courses.add(course);
+			}
+
+			resultSet.close();
+		} catch (SQLException e) {
+			Logger.logDebug("Caught SQLException while trying to retrieve all courses");
+			Logger.logException(e);
+			return null;
+		}
+
+		return courses;
 	}
 }

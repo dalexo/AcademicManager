@@ -16,11 +16,13 @@ import javax.sql.DataSource;
 import java.sql.Connection;
 import com.academic.db.DAOImpl;
 import com.academic.db.dao.CourseDAO;
+import com.academic.db.dao.CourseRestDAO;
 import com.academic.db.dao.Dao;
 import com.academic.db.dao.PersonDAO;
 import com.academic.db.dao.TeacherDao;
 import com.academic.model.Course;
 import com.academic.model.Person;
+import com.academic.utils.Logger;
 
 //Factory class to retrieve all DAOs
 public class DAOFactory {
@@ -47,7 +49,7 @@ public class DAOFactory {
 			ds = (DataSource) ctx.lookup("java:/comp/env/AcademicManagerDB");
 			dbConnection = ds.getConnection();
 		} catch (NamingException e) {
-			e.printStackTrace();
+			Logger.logException(e);
 		}
 
 		daoTable = new HashMap<String, DAOImpl>();
@@ -84,6 +86,14 @@ public class DAOFactory {
 		
 		return (TeacherDao) daoTable.get(PERSON_DAO_KEY);
 	}
+	
+	public CourseRestDAO getCourseRestDao() throws SQLException {
+		if (!daoTable.containsKey(COURSE_DAO_KEY)) {
+			daoTable.put(COURSE_DAO_KEY, new CourseDAO(dbConnection));
+		}
+		
+		return (CourseDAO) daoTable.get(COURSE_DAO_KEY);
+	}
 
 	public void close() {
 
@@ -96,8 +106,8 @@ public class DAOFactory {
 		try {
 			this.dbConnection.close();
 		} catch (SQLException e) {
-			System.out.println("Could not close connection to database");
-			e.printStackTrace();
+			Logger.logDebug("Could not close connection to database");
+			Logger.logException(e);
 		}
 	}
 }
