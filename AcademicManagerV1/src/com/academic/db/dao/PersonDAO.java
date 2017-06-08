@@ -76,25 +76,37 @@ public class PersonDAO extends DAOImpl<Person> implements TeacherDao {
 	@Override
 	public Person get(int id) {
 		Person person = new Person();
+		ResultSet resultSet = null;
 		try {
 			selectByIdStatement.setInt(1, id);
 			selectByIdStatement.execute();
-			ResultSet resultSet = selectByIdStatement.getResultSet();
+			resultSet = selectByIdStatement.getResultSet();
 			if (resultSet.first()) {
 				readFromResultSet(resultSet, person);
 			}
-			resultSet.close();
 		} catch (SQLException e) {
 			Logger.logDebug("Caught SQLException while executing get by id: " + id);
 			Logger.logException(e);
-			return null;
+			person = null;
+		} finally {
+			closeResultSet(resultSet);
 		}
 		return person;
 	}
 
+	private void closeResultSet(ResultSet resultSet) {
+		if (resultSet != null) {
+			try {
+				resultSet.close();
+			} catch (SQLException e) {
+				Logger.logException(e);
+			}
+		}
+	}
+
 	@Override
 	public List<Person> getAll() {
-		ResultSet resultSet;
+		ResultSet resultSet = null;
 		List<Person> personList = new ArrayList<Person>();
 		try {
 			resultSet = selectAllStatement.executeQuery();
@@ -102,18 +114,19 @@ public class PersonDAO extends DAOImpl<Person> implements TeacherDao {
 				Person person = new Person();
 				personList.add(readFromResultSet(resultSet, person));
 			}
-			resultSet.close();
 		} catch (SQLException e) {
 			Logger.logDebug("Caught SQLException while trying to retrieve all persons");
 			Logger.logException(e);
-			return null;
-		}
+			personList = null;
+		} finally {
+			closeResultSet(resultSet);
+		}	
 		return personList;
 	}
 
 	@Override
 	public List<Person> getTeachers() {
-		ResultSet resultSet;
+		ResultSet resultSet = null;
 		List<Person> teacherList = new ArrayList<Person>();
 		try {
 			resultSet = getTeachersStatement.executeQuery();
@@ -121,11 +134,12 @@ public class PersonDAO extends DAOImpl<Person> implements TeacherDao {
 				Person person = new Person();
 				teacherList.add(readFromResultSet(resultSet, person));
 			}
-			resultSet.close();
 		} catch (SQLException e) {
 			Logger.logDebug("Caught SQLException while trying to retrieve all persons");
 			Logger.logException(e);
-			return null;
+			teacherList = null;
+		} finally {
+			closeResultSet(resultSet);
 		}
 		return teacherList;
 
@@ -134,25 +148,27 @@ public class PersonDAO extends DAOImpl<Person> implements TeacherDao {
 	@Override
 	public Person getTeacher(int id) {
 		Person person = new Person();
+		ResultSet resultSet = null;
 		try {
 			selectTeacherByIdStatement.setInt(1, id);
 			selectTeacherByIdStatement.execute();
-			ResultSet resultSet = selectTeacherByIdStatement.getResultSet();
+			resultSet = selectTeacherByIdStatement.getResultSet();
 			if (resultSet.first()) {
 				readFromResultSet(resultSet, person);
 			}
-			resultSet.close();
 		} catch (SQLException e) {
 			Logger.logDebug("Caught SQLException while executing get by id: " + id);
 			Logger.logException(e);
-			return null;
+			person = null;
+		} finally {
+			closeResultSet(resultSet);
 		}
 		return person;
 	}
 
 	@Override
 	public List<Person> getTeachersByCourseId(int id) {
-		ResultSet resultSet;
+		ResultSet resultSet = null;
 		List<Person> teacherList = new ArrayList<Person>();
 		try {
 			selectTeachersByCourseId.setInt(1, id);
@@ -161,11 +177,12 @@ public class PersonDAO extends DAOImpl<Person> implements TeacherDao {
 				Person person = new Person();
 				teacherList.add(readFromResultSet(resultSet, person));
 			}
-			resultSet.close();
 		} catch (SQLException e) {
 			Logger.logDebug("Caught SQLException while trying to retrieve all teachers");
 			Logger.logException(e);
-			return null;
+			teacherList = null;
+		} finally {
+			closeResultSet(resultSet);
 		}
 		return teacherList;
 	}
@@ -173,18 +190,19 @@ public class PersonDAO extends DAOImpl<Person> implements TeacherDao {
 	@Override
 	public int countAll() {
 		int count = 0;
-		ResultSet resultSet;
+		ResultSet resultSet = null;
 
 		try {
 			resultSet = countStatement.executeQuery();
 			if (resultSet.first()) {
 				count = resultSet.getInt(1);
 			}
-			resultSet.close();
 		} catch (SQLException e) {
 			Logger.logDebug("Caught SQLException while counting persons");
 			Logger.logException(e);
-			return -1;
+			count = -1;
+		} finally {
+			closeResultSet(resultSet);
 		}
 		return count;
 	}
