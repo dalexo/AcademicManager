@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@page
-	import="com.academic.db.*,com.academic.model.*,com.academic.db.dao.*,java.sql.*,java.util.*"%>
+	pageEncoding="UTF-8" import="com.academic.model.Person"%>
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,18 +26,9 @@
 	</header>
 	<div class="div-body">
 
-		<%
-			Dao<Person> personDao = null;
-			try {
-				personDao = DAOFactory.getInstance().getPersonDao();
-			} catch (SQLException e) {
-				out.print("Could not connect to the database");
-				e.printStackTrace();
-				return;
-			}
-			List<Person> list = personDao.getAll();
-			request.setAttribute("persons", list);
-		%>
+		<jsp:useBean id="person" class="com.academic.model.Person"
+			scope="request"></jsp:useBean>
+
 		<div class="container-fluid">
 
 			<div class="col-md-12">
