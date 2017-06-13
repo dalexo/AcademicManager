@@ -28,8 +28,6 @@
 	</header>
 	<div class="div-body">
 
-		<jsp:useBean id="person" class="com.academic.model.Person"
-			scope="request"></jsp:useBean>
 
 		<div class="container-fluid">
 
@@ -64,28 +62,19 @@
 					<h3 class="text-center">
 						<a href="#">About</a>
 					</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-						do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-						enim ad minim veniam, quis nostrud exercitation ullamco laboris
-						nisi ut aliquip ex ea commodo consequat.</p>
+	
 				</div>
 				<div class="col-sm-4">
 					<h3 class="text-center">
 						<a href="#">Useful Links</a>
 					</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-						do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-						enim ad minim veniam, quis nostrud exercitation ullamco laboris
-						nisi ut aliquip ex ea commodo consequat.</p>
+				
 				</div>
 				<div class="col-sm-4">
 					<h3 class="text-center">
 						<a href="#">Contact Us</a>
 					</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-						do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-						enim ad minim veniam, quis nostrud exercitation ullamco laboris
-						nisi ut aliquip ex ea commodo consequat.</p>
+					
 				</div>
 			</div>
 		</div>
