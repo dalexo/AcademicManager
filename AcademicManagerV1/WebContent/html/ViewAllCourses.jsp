@@ -21,12 +21,12 @@
 	<header>
 		<a href="./SecretaryMain.html">
 			<button class="btn btn-color" role="button">Back</button>
-		</a> <a href="#">
+		</a> <a href="./NewCourseForm.jsp">
 			<button class="btn btn-success pull-right">Add New Course</button>
 		</a>
 	</header>
 	<div class="div-body">
-             <jsp:useBean id="course" class="com.academic.model.Course" scope="request"></jsp:useBean>
+             
 		<div class="container-fluid">
 
 			<div class="col-md-12">
@@ -57,28 +57,19 @@
 					<h3 class="text-center">
 						<a href="#">About</a>
 					</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-						do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-						enim ad minim veniam, quis nostrud exercitation ullamco laboris
-						nisi ut aliquip ex ea commodo consequat.</p>
+
 				</div>
 				<div class="col-sm-4">
 					<h3 class="text-center">
 						<a href="#">Useful Links</a>
 					</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-						do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-						enim ad minim veniam, quis nostrud exercitation ullamco laboris
-						nisi ut aliquip ex ea commodo consequat.</p>
+		
 				</div>
 				<div class="col-sm-4">
 					<h3 class="text-center">
 						<a href="#">Contact Us</a>
 					</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-						do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-						enim ad minim veniam, quis nostrud exercitation ullamco laboris
-						nisi ut aliquip ex ea commodo consequat.</p>
+				
 				</div>
 			</div>
 		</div>
