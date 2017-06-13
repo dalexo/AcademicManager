@@ -33,6 +33,24 @@
     <servlet-name>UserAuthentication</servlet-name>
     <url-pattern>/UserAuthentication</url-pattern>
   </servlet-mapping>
- 
-  
+  <servlet>
+    <description></description>
+    <display-name>CourseServlet</display-name>
+    <servlet-name>CourseServlet</servlet-name>
+    <servlet-class>com.academic.servlets.CourseServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CourseServlet</servlet-name>
+    <url-pattern>/Courses</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>PersonsServlet</display-name>
+    <servlet-name>PersonsServlet</servlet-name>
+    <servlet-class>com.academic.servlets.PersonsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PersonsServlet</servlet-name>
+    <url-pattern>/Persons</url-pattern>
+  </servlet-mapping>
 </web-app>
