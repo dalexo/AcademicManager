@@ -40,7 +40,7 @@ public class CourseDAO extends DAOImpl<Course> implements CourseRestDAO {
 				ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 
 		addStatement = dbConnection.prepareStatement(
-				"INSERT INTO course (title, cost, description, startingDate, endingDate, isActive, isDeleted) VALUES ('?','?','?','?','?','?','0');");
+				"INSERT INTO course (title, cost, description, startingDate, endingDate, isActive) VALUES (?,?,?,?,?,?);");
 
 		updateStatement = dbConnection.prepareStatement(
 				"UPDATE course SET title=?,cost=?,description=?,startingDate=?,endingDate=?,isActive=? WHERE courseId= ?;");
