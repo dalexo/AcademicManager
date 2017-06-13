@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@page
-	import="com.academic.db.*,com.academic.model.*,com.academic.db.dao.*,java.sql.*,java.util.*"%>
+	pageEncoding="UTF-8" import="com.academic.model.Course"%>
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
@@ -22,24 +21,12 @@
 	<header>
 		<a href="./SecretaryMain.html">
 			<button class="btn btn-color" role="button">Back</button>
-		</a> <a href="#">
+		</a> <a href="./NewCourseForm.jsp">
 			<button class="btn btn-success pull-right">Add New Course</button>
 		</a>
 	</header>
 	<div class="div-body">
-
-		<%
-			Dao<Course> courseDao = null;
-			try {
-				courseDao = DAOFactory.getInstance().getCourseDao();
-			} catch (SQLException e) {
-				out.print("Could not connect to the database");
-				e.printStackTrace();
-				return;
-			}
-			List<Course> list = courseDao.getAll();
-			request.setAttribute("courses", list);
-		%>
+             
 		<div class="container-fluid">
 
 			<div class="col-md-12">
@@ -70,28 +57,19 @@
 					<h3 class="text-center">
 						<a href="#">About</a>
 					</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-						do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-						enim ad minim veniam, quis nostrud exercitation ullamco laboris
-						nisi ut aliquip ex ea commodo consequat.</p>
+
 				</div>
 				<div class="col-sm-4">
 					<h3 class="text-center">
 						<a href="#">Useful Links</a>
 					</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-						do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-						enim ad minim veniam, quis nostrud exercitation ullamco laboris
-						nisi ut aliquip ex ea commodo consequat.</p>
+		
 				</div>
 				<div class="col-sm-4">
 					<h3 class="text-center">
 						<a href="#">Contact Us</a>
 					</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-						do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-						enim ad minim veniam, quis nostrud exercitation ullamco laboris
-						nisi ut aliquip ex ea commodo consequat.</p>
+				
 				</div>
 			</div>
 		</div>
