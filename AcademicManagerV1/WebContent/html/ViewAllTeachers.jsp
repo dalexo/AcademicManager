@@ -41,7 +41,7 @@
 							<c:set var="personType" value="${person.getType()}" />
 							<c:if test="${personType == 'Teacher'}">
 								<tr>
-									<td><a href="./PersonForm.jsp?id=${person.getPersonId()}">
+									<td><a href="persons?id=${person.getPersonId()}">
 											<c:out value="${person.getName()}" /> <c:out
 												value="${person.getSurname()}" />
 									</a></td>
