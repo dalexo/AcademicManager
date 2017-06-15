@@ -33,7 +33,6 @@ public class UserAuthentication extends HttpServlet {
 	 */
 	public UserAuthentication() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -42,8 +41,7 @@ public class UserAuthentication extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		doPost(request,response);
 	}
 
 	/**
@@ -52,8 +50,6 @@ public class UserAuthentication extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 		String username, password;
 
 		username = request.getParameter("username");
@@ -78,7 +74,7 @@ public class UserAuthentication extends HttpServlet {
 				loginCookie.setMaxAge(60 * 60);
 				response.addCookie(loginCookie);
 				request.setAttribute("isAuthenticated", "true");
-				response.sendRedirect("/AcademicManagerV1/html/FrontEnd_Homepage.jsp");
+				response.sendRedirect("/AcademicManagerV1/html/SecretaryMain.jsp");
 			} else {
 				// user's credential is wrong, redirect him to the login page
 				Logger.logDebug("Authentication failed...");

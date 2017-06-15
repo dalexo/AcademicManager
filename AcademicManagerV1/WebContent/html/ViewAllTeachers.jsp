@@ -3,6 +3,8 @@
 <%@page
 	import="com.academic.db.*,com.academic.model.*,com.academic.db.dao.*,java.sql.*,java.util.*"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ include file="../html/SecurityCheck.jsp" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

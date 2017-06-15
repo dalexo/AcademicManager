@@ -3,6 +3,8 @@
 <%@page
 	import="com.academic.db.*,com.academic.model.*,com.academic.db.dao.*,java.sql.*,java.util.*"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ include file="../html/SecurityCheck.jsp"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,15 +22,12 @@
 <body>
 	<header> </header>
 	<div class="div-body">
-	<%!
-	String studentName = "";
-	%>
+
 
 
 		<%
 			Dao<Course> courseDao = null;
-			Cookie[] authCookies = null;
-			
+
 			try {
 				courseDao = DAOFactory.getInstance().getCourseDao();
 			} catch (SQLException e) {
@@ -38,22 +37,9 @@
 			}
 			List<Course> list = courseDao.getAll();
 			request.setAttribute("courses", list);
-			authCookies = request.getCookies();
-			if( authCookies.length-1 > 0 ){
-				for (Cookie ck : authCookies) {
-					if (ck.getName().equals("user")) {
-						studentName = ck.getValue().substring(0, ck.getValue().indexOf("@"));
-					}
-				}
-				
-			}else{
-				response.sendRedirect("/AcademicManagerV1/html/login.jsp");
-			}
-
-			
 		%>
-		
-		     <div class="container-fluid">
+
+		<div class="container-fluid">
 			<div class="row">
 				<p>
 					Welcome <br><%=studentName%>
@@ -126,6 +112,6 @@
 			</div>
 		</div>
 	</footer>
-		    
-		</body>
+
+</body>
 </html>

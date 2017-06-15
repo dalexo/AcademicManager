@@ -51,7 +51,6 @@ public class UserDAO extends DAOImpl<User> {
 
 	@Override
 	public List<User> getAll() {
-		// TODO Auto-generated method stub
 		ResultSet resultSet;
 		List<User> userList = new ArrayList<>();
 
