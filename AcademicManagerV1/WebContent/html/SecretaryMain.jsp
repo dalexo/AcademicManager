@@ -1,13 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="../html/SecurityCheck.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Secretary Homepage</title>
-<link rel="stylesheet" type="text/css"
-	href="../css/FrontEnd_Homepage.css" media="screen">
+<link rel="stylesheet" type="text/css" href="../css/SecretaryMain.css"
+	media="screen">
 <link href="https://fonts.googleapis.com/css?family=Roboto"
 	rel="stylesheet">
 <link rel="stylesheet"
@@ -21,9 +20,12 @@
 
 		<div class="container-fluid">
 			<div class="row">
+				<%@ include file="../html/SecurityCheck.jsp"%>
 				<p>
-					Welcome <br><%=secretaryName %>
+					Welcome <br><%=secretaryName%>
 				</p>
+
+
 				<div class="col-md-12">
 					<a href="./ViewAllCourses.jsp" class="btn btn-block btn-primary">Courses</a>
 					<a href="./ViewAllStudents.jsp" class="btn btn-block btn-primary">Students</a>

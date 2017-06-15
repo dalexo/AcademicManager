@@ -41,7 +41,7 @@ public class UserAuthentication extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		doPost(request,response);
+		doPost(request, response);
 	}
 
 	/**
@@ -50,38 +50,55 @@ public class UserAuthentication extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String username, password;
 
-		username = request.getParameter("username");
-		password = request.getParameter("password");
-		Logger.logDebug("username " + username);
-
-		try {
-			userDao = DAOFactory.getInstance().getUserDao();
-		} catch (SQLException e) {
-			Logger.logDebug("Could not connect to the database");
-			e.printStackTrace();
-			return;
-		}
-
-		allUsers = userDao.getAll();
-
-		for (int i = 0; i < allUsers.size(); i++) {
-			if (allUsers.get(i).getUserEmail().equalsIgnoreCase(username)
-					&& allUsers.get(i).getUserPassword().equals(password)) {
-				// user has been authenticated
-				loginCookie = new Cookie("user", username);
-				loginCookie.setMaxAge(60 * 60);
-				response.addCookie(loginCookie);
-				request.setAttribute("isAuthenticated", "true");
-				response.sendRedirect("/AcademicManagerV1/html/SecretaryMain.jsp");
-			} else {
-				// user's credential is wrong, redirect him to the login page
-				Logger.logDebug("Authentication failed...");
-				response.sendRedirect("/AcademicManagerV1/html/login.jsp?authentication=false");
-
+		if (request.getParameter("logout") != null) {
+			for (Cookie ck : request.getCookies()) {
+				if (ck.getName().equals("user")) {
+					ck.setMaxAge(0);
+					response.addCookie(ck);
+					System.out.println("Cookie found!!!!!!");
+				}
 			}
+			request.getSession(true).invalidate();
+
+			response.sendRedirect("/AcademicManagerV1/html/login.jsp");
+		} else {
+			String username, password;
+
+			username = request.getParameter("username");
+			password = request.getParameter("password");
+			Logger.logDebug("username " + username);
+
+			try {
+				userDao = DAOFactory.getInstance().getUserDao();
+			} catch (SQLException e) {
+				Logger.logDebug("Could not connect to the database");
+				e.printStackTrace();
+				return;
+			}
+
+			allUsers = userDao.getAll();
+
+			for (int i = 0; i < allUsers.size(); i++) {
+				if (allUsers.get(i).getUserEmail().equalsIgnoreCase(username)
+						&& allUsers.get(i).getUserPassword().equals(password)) {
+					// user has been authenticated
+					loginCookie = new Cookie("user", username);
+					loginCookie.setMaxAge(60 * 60);
+					response.addCookie(loginCookie);
+					request.setAttribute("isAuthenticated", "true");
+					response.sendRedirect("/AcademicManagerV1/html/SecretaryMain.jsp");
+				} else {
+					// user's credential is wrong, redirect him to the login
+					// page
+					Logger.logDebug("Authentication failed...");
+					response.sendRedirect("/AcademicManagerV1/html/login.jsp?authentication=false");
+
+				}
+			}
+
 		}
+
 	}
 
 }

@@ -6,10 +6,9 @@
 </head>
 <body>
 
-<%! String secretaryName = ""; %>
+	<%!String secretaryName = "";%>
 	<%
 		Cookie[] authCookies = null;
-		
 
 		authCookies = request.getCookies();
 		if (authCookies.length - 1 > 0) {
@@ -23,6 +22,11 @@
 			response.sendRedirect("/AcademicManagerV1/html/login.jsp?authentication=false");
 		}
 	%>
+
+	<%
+		
+	%>
+	<a href="/AcademicManagerV1/UserAuthentication?logout=1" class="logout">Logout</a>
 
 </body>
 </html>

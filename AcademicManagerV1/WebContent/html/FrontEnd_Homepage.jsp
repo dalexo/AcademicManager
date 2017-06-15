@@ -11,7 +11,7 @@
 <meta charset="utf-8">
 <title>Homepage</title>
 <link rel="stylesheet" type="text/css"
-	href="../css/FrontEnd_Homepage.css" media="screen">
+	href="../css/SecretaryMain.css" media="screen">
 <link href="https://fonts.googleapis.com/css?family=Roboto"
 	rel="stylesheet">
 <link rel="stylesheet"
@@ -42,7 +42,7 @@
 		<div class="container-fluid">
 			<div class="row">
 				<p>
-					Welcome <br><%=studentName%>
+					Welcome <br><%=secretaryName%>
 				</p>
 				<div class="col-md-6">
 					<button class="btn btn-block btn-primary">Home</button>
