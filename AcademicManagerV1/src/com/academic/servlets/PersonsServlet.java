@@ -24,26 +24,96 @@ public class PersonsServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		String type = request.getParameter("type");
+		int id = Integer.parseInt(request.getParameter("id"));
+
+		if (id == 0) {
+			Dao<Person> personDao = null;
+			try {
+				personDao = DAOFactory.getInstance().getPersonDao();
+			} catch (SQLException e) {
+				Logger.logDebug("Caught SQLException while trying to retrieve all courses");
+				Logger.logException(e);
+				return;
+			}
+			List<Person> list = personDao.getAll();
+			request.setAttribute("persons", list);
+
+			if (type.equals("students")) {
+				RequestDispatcher dispatcher = request.getRequestDispatcher("./ViewAllStudents.jsp");
+				dispatcher.forward(request, response);
+				return;
+			} else if (type.equals("teachers")) {
+				RequestDispatcher dispatcher = request.getRequestDispatcher("./ViewAllTeachers.jsp");
+				dispatcher.forward(request, response);
+				return;
+			}
+			return;
+		} else if (id != 0) {
+			Dao<Person> personDao = null;
+
+			try {
+				personDao = DAOFactory.getInstance().getPersonDao();
+
+			} catch (SQLException e) {
+				Logger.logDebug("Caught SQLException while trying to retrieve all courses");
+				Logger.logException(e);
+				return;
+			}
+			Person c = personDao.get(id);
+			request.setAttribute("person", c);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("./PersonForm.jsp");
+			dispatcher.forward(request, response);
+			return;
+
+		}
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		int id = Integer.parseInt(request.getParameter("id"));
+		String type = request.getParameter("type");
+		String name = request.getParameter("name");
+		String surname = request.getParameter("surname");
+		String dateOfBirth = request.getParameter("dateOfBirth");
+		String sex = request.getParameter("sex");
+		String email = request.getParameter("email");
+		String phoneNumber = request.getParameter("phoneNumber");
+		String address = request.getParameter("address");
+		String taxNumber = request.getParameter("taxNumber");
+		String bankAccount = request.getParameter("bankAccount");
+
 		Dao<Person> personDao = null;
+
 		try {
 			personDao = DAOFactory.getInstance().getPersonDao();
+
 		} catch (SQLException e) {
 			Logger.logDebug("Caught SQLException while trying to retrieve all courses");
 			Logger.logException(e);
 			return;
 		}
-		List<Person> list = personDao.getAll();
-		request.setAttribute("persons", list);
 
-		if (type.equals("students")) {
-			RequestDispatcher dispatcher = request.getRequestDispatcher("./ViewAllStudents.jsp");
-			dispatcher.forward(request, response);
-			return;
-		} else if (type.equals("teachers")) {
-			RequestDispatcher dispatcher = request.getRequestDispatcher("./ViewAllTeachers.jsp");
-			dispatcher.forward(request, response);
+		Person p = new Person();
+		p.setName(name);
+		p.setSurname(surname);
+		p.setDateOfBirth(dateOfBirth);
+		p.setSex(sex);
+		p.setEmail(email);
+		p.setPhoneNumber(phoneNumber);
+		p.setAddress(address);
+		p.setTaxNumber(taxNumber);
+		p.setBankAccount(bankAccount);
+		p.setPersonId(id);
+		personDao.update(p);
+
+		if (type.equals("Student")) {
+			response.sendRedirect("./persons?type=students&id=0");
 			return;
 		}
+
+		response.sendRedirect("./persons?type=teachers&id=0");
+
 	}
 
 }

@@ -20,21 +20,78 @@ import com.academic.utils.Logger;
 public class CourseServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		int id = Integer.parseInt(request.getParameter("id"));
+
+		if (id == 0) {
+			Dao<Course> courseDao = null;
+			try {
+				courseDao = DAOFactory.getInstance().getCourseDao();
+			} catch (SQLException e) {
+				Logger.logDebug("Caught SQLException while trying to retrieve all courses");
+				Logger.logException(e);
+				return;
+			}
+			List<Course> list = courseDao.getAll();
+			request.setAttribute("courses", list);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("./ViewAllCourses.jsp");
+			dispatcher.forward(request, response);
+			return;
+		} else if (id != 0) {
+			Dao<Course> courseDao = null;
+
+			try {
+				courseDao = DAOFactory.getInstance().getCourseDao();
+
+			} catch (SQLException e) {
+				Logger.logDebug("Caught SQLException while trying to retrieve all courses");
+				Logger.logException(e);
+				return;
+			}
+			Course c = courseDao.get(id);
+			request.setAttribute("course", c);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("./CourseForm.jsp");
+			dispatcher.forward(request, response);
+			return;
+		}
+
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		int id = Integer.parseInt(request.getParameter("id"));
+		String title = request.getParameter("title");
+		int cost = Integer.parseInt(request.getParameter("cost"));
+		String description = request.getParameter("description");
+		String startingDate = request.getParameter("startingDate");
+		String endingDate = request.getParameter("endingDate");
+		boolean isActive = Boolean.parseBoolean(request.getParameter("isActive"));
+
 		Dao<Course> courseDao = null;
+
 		try {
 			courseDao = DAOFactory.getInstance().getCourseDao();
+
 		} catch (SQLException e) {
 			Logger.logDebug("Caught SQLException while trying to retrieve all courses");
 			Logger.logException(e);
 			return;
 		}
-		List<Course> list = courseDao.getAll();
-		request.setAttribute("courses", list);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("./ViewAllCourses.jsp");
-		dispatcher.forward(request, response);
-		
-	}
 
+		Course c = new Course();
+		c.setTitle(title);
+		c.setCost(cost);
+		c.setDescription(description);
+		c.setStartingDate(startingDate);
+		c.setEndingDate(endingDate);
+		c.setActive(isActive);
+		c.setCourseId(id);
+		courseDao.update(c);
+		
+		response.sendRedirect("courses?id=0");
+        
+	}
 }
