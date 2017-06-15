@@ -22,12 +22,12 @@ public class CourseServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		String idm = request.getParameter("id");
-		
+
 		if (idm != null) {
-		int id =Integer.parseInt(request.getParameter("id"));
-			
+			int id = Integer.parseInt(request.getParameter("id"));
+
 			Dao<Course> courseDao = null;
 
 			try {
