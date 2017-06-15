@@ -41,7 +41,7 @@
 		</div>
 
 	</form>
-	<script src="../node_modules/jquery/dist/jquery.js"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	
 	 <c:choose>
 		<c:when test="${ param.authentication == false   }">

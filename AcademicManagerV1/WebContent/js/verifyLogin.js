@@ -11,8 +11,6 @@ loginButton = document.querySelector('#login-btn');
 hideAlertBox();
 loginButton.addEventListener('click',checkFields);
 
-//checkFields();
-
 
 function checkFields(){
 	if( usernameField.value ==="" || passwordField.value === "" ){
