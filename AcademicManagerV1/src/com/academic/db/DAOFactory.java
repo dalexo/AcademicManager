@@ -20,6 +20,7 @@ import com.academic.db.dao.CourseRestDAO;
 import com.academic.db.dao.Dao;
 import com.academic.db.dao.PersonDAO;
 import com.academic.db.dao.TeacherDao;
+import com.academic.db.dao.UserDAO;
 import com.academic.model.Course;
 import com.academic.model.Person;
 import com.academic.utils.Logger;
@@ -31,6 +32,7 @@ public class DAOFactory {
 	private static final String DB_URL = "jdbc:mysql://localhost/AcademicManager";
 	private static final String COURSE_DAO_KEY = "course.dao";
 	private static final String PERSON_DAO_KEY = "person.dao";
+	private static final String USER_DAO_KEY = "user.dao";
 
 	// Attributes
 	private Connection dbConnection;
@@ -93,6 +95,13 @@ public class DAOFactory {
 		}
 		
 		return (CourseDAO) daoTable.get(COURSE_DAO_KEY);
+	}
+	
+	public UserDAO getUserDao() throws SQLException {
+		if (!daoTable.containsKey(USER_DAO_KEY)) {
+			daoTable.put(USER_DAO_KEY, new UserDAO(dbConnection));
+		}
+		return (UserDAO) daoTable.get(USER_DAO_KEY);
 	}
 
 	public void close() {
