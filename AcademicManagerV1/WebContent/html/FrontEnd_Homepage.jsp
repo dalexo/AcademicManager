@@ -20,12 +20,15 @@
 <body>
 	<header> </header>
 	<div class="div-body">
+	<%!
+	String studentName = "";
+	%>
 
 
 		<%
 			Dao<Course> courseDao = null;
 			Cookie[] authCookies = null;
-			String studentName = "";
+			
 			try {
 				courseDao = DAOFactory.getInstance().getCourseDao();
 			} catch (SQLException e) {
@@ -36,14 +39,21 @@
 			List<Course> list = courseDao.getAll();
 			request.setAttribute("courses", list);
 			authCookies = request.getCookies();
-
-			for (Cookie ck : authCookies) {
-				if (ck.getName().equals("user")) {
-					studentName = ck.getValue().substring(0, ck.getValue().indexOf("@"));
+			if( authCookies.length-1 > 0 ){
+				for (Cookie ck : authCookies) {
+					if (ck.getName().equals("user")) {
+						studentName = ck.getValue().substring(0, ck.getValue().indexOf("@"));
+					}
 				}
+				
+			}else{
+				response.sendRedirect("/AcademicManagerV1/html/login.jsp");
 			}
+
+			
 		%>
-		<div class="container-fluid">
+		
+		     <div class="container-fluid">
 			<div class="row">
 				<p>
 					Welcome <br><%=studentName%>
@@ -116,5 +126,6 @@
 			</div>
 		</div>
 	</footer>
-</body>
+		    
+		</body>
 </html>
