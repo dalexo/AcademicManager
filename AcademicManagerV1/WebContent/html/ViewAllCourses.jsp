@@ -41,7 +41,7 @@
 						<c:forEach items="${courses}" var="course">
 							<tr>
 
-								<td><a href="./CourseForm.jsp?id=${course.getCourseId()}"><c:out
+								<td><a href="./courses?id=${course.getCourseId()}"><c:out
 											value="${course.getTitle()}" /></a></td>
 
 							</tr>
