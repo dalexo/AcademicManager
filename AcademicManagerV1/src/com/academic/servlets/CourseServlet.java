@@ -22,24 +22,12 @@ public class CourseServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		int id = Integer.parseInt(request.getParameter("id"));
-
-		if (id == 0) {
-			Dao<Course> courseDao = null;
-			try {
-				courseDao = DAOFactory.getInstance().getCourseDao();
-			} catch (SQLException e) {
-				Logger.logDebug("Caught SQLException while trying to retrieve all courses");
-				Logger.logException(e);
-				return;
-			}
-			List<Course> list = courseDao.getAll();
-			request.setAttribute("courses", list);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("./ViewAllCourses.jsp");
-			dispatcher.forward(request, response);
-			return;
-		} else if (id != 0) {
+		
+		String idm = request.getParameter("id");
+		
+		if (idm != null) {
+		int id =Integer.parseInt(request.getParameter("id"));
+			
 			Dao<Course> courseDao = null;
 
 			try {
@@ -55,6 +43,22 @@ public class CourseServlet extends HttpServlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("./CourseForm.jsp");
 			dispatcher.forward(request, response);
 			return;
+		} else {
+
+			Dao<Course> courseDao = null;
+			try {
+				courseDao = DAOFactory.getInstance().getCourseDao();
+			} catch (SQLException e) {
+				Logger.logDebug("Caught SQLException while trying to retrieve all courses");
+				Logger.logException(e);
+				return;
+			}
+			List<Course> list = courseDao.getAll();
+			request.setAttribute("courses", list);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("./ViewAllCourses.jsp");
+			dispatcher.forward(request, response);
+			return;
+
 		}
 
 	}
@@ -90,8 +94,8 @@ public class CourseServlet extends HttpServlet {
 		c.setActive(isActive);
 		c.setCourseId(id);
 		courseDao.update(c);
-		
-		response.sendRedirect("courses?id=0");
-        
+
+		response.sendRedirect("courses");
+
 	}
 }

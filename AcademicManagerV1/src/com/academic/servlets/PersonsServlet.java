@@ -24,9 +24,9 @@ public class PersonsServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		String type = request.getParameter("type");
-		int id = Integer.parseInt(request.getParameter("id"));
+		String idm = request.getParameter("id");
 
-		if (id == 0) {
+		if (idm == null) {
 			Dao<Person> personDao = null;
 			try {
 				personDao = DAOFactory.getInstance().getPersonDao();
@@ -48,7 +48,8 @@ public class PersonsServlet extends HttpServlet {
 				return;
 			}
 			return;
-		} else if (id != 0) {
+		} else if (idm != null) {
+			int id = Integer.parseInt(request.getParameter("id"));
 			Dao<Person> personDao = null;
 
 			try {
@@ -108,11 +109,11 @@ public class PersonsServlet extends HttpServlet {
 		personDao.update(p);
 
 		if (type.equals("Student")) {
-			response.sendRedirect("./persons?type=students&id=0");
+			response.sendRedirect("./persons?type=students");
 			return;
 		}
 
-		response.sendRedirect("./persons?type=teachers&id=0");
+		response.sendRedirect("./persons?type=teachers");
 
 	}
 
