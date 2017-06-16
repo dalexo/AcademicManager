@@ -1,15 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@page
-			import="com.academic.db.*,com.academic.model.*,com.academic.db.dao.*,java.sql.*,java.util.*"%>
+	import="com.academic.db.*,com.academic.model.*,com.academic.db.dao.*,java.sql.*,java.util.*"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ include file="../html/SecurityCheck.jsp"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <title>Homepage</title>
 <link rel="stylesheet" type="text/css"
-	href="./css/FrontEnd_Homepage.css" media="screen">
+	href="../css/SecretaryMain.css" media="screen">
 <link href="https://fonts.googleapis.com/css?family=Roboto"
 	rel="stylesheet">
 <link rel="stylesheet"
@@ -20,10 +22,12 @@
 <body>
 	<header> </header>
 	<div class="div-body">
-		
+
+
 
 		<%
 			Dao<Course> courseDao = null;
+
 			try {
 				courseDao = DAOFactory.getInstance().getCourseDao();
 			} catch (SQLException e) {
@@ -34,10 +38,11 @@
 			List<Course> list = courseDao.getAll();
 			request.setAttribute("courses", list);
 		%>
+
 		<div class="container-fluid">
 			<div class="row">
 				<p>
-					Welcome <br>Student
+					Welcome <br><%=secretaryName%>
 				</p>
 				<div class="col-md-6">
 					<button class="btn btn-block btn-primary">Home</button>
@@ -92,5 +97,6 @@
 			</div>
 		</div>
 	</footer>
+
 </body>
 </html>

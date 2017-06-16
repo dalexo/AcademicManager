@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8" import="com.academic.model.Course"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ include file="../html/SecurityCheck.jsp" %>
 
 <!DOCTYPE html>
 <html lang="en">

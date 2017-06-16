@@ -88,3 +88,32 @@ label {
   text-decoration: none;
   color:#e91e63
 }
+
+#alertBox {
+	position:relative;
+	display:block;
+	width:30%;
+	background-color:#e82727;
+	margin:auto;
+	font-family:'Roboto',sans-serif;
+	font-size:14px;
+	padding:10px 10px 10px 10px;
+	top:150px;
+}
+
+#alertBox h4 {
+	display:inline-block;
+	padding:5px 5px 5px 5px;
+	margin:0px;
+	color:#ffffff;
+}
+
+.closebtn {
+	position:relative;
+	float:right;
+	font-family:'Roboto',sans-serif;
+	font-size:25px;
+	color:#ffffff;
+	line-height:20px;
+	cursor:pointer;
+}
