@@ -37,7 +37,7 @@ public class CourseServlet extends HttpServlet {
 					courseDao = DAOFactory.getInstance().getCourseDao();
 
 				} catch (SQLException e) {
-					Logger.logDebug("Caught SQLException while trying to get CourseDao instance");
+					Logger.logDebug("Caught SQLException while trying to delete course");
 					Logger.logException(e);
 					return;
 				}
@@ -60,7 +60,7 @@ public class CourseServlet extends HttpServlet {
 				courseDao = DAOFactory.getInstance().getCourseDao();
 
 			} catch (SQLException e) {
-				Logger.logDebug("Caught SQLException while trying to get CourseDao instance");
+				Logger.logDebug("Caught SQLException while trying to retrieve course");
 				Logger.logException(e);
 				return;
 			}
@@ -75,7 +75,7 @@ public class CourseServlet extends HttpServlet {
 			try {
 				courseDao = DAOFactory.getInstance().getCourseDao();
 			} catch (SQLException e) {
-				Logger.logDebug("Caught SQLException while trying to get CourseDao instance");
+				Logger.logDebug("Caught SQLException while trying to retrieve courses");
 				Logger.logException(e);
 				return;
 			}
@@ -109,7 +109,7 @@ public class CourseServlet extends HttpServlet {
 				courseDao = DAOFactory.getInstance().getCourseDao();
 
 			} catch (SQLException e) {
-				Logger.logDebug("Caught SQLException while trying to get CourseDao instance");
+				Logger.logDebug("Caught SQLException while trying to update course");
 				Logger.logException(e);
 				return;
 			}
@@ -142,7 +142,7 @@ public class CourseServlet extends HttpServlet {
 				courseDao = DAOFactory.getInstance().getCourseDao();
 
 			} catch (SQLException e) {
-				Logger.logDebug("Caught SQLException while trying to get CourseDao instance");
+				Logger.logDebug("Caught SQLException while trying to add course");
 				Logger.logException(e);
 				return;
 			}
