@@ -11,7 +11,7 @@
 <meta charset="utf-8">
 <title>Person Form Page</title>
 <link rel="stylesheet" type="text/css"
-	href="../css/FrontEnd_Homepage.css" media="screen">
+	href="../css/SecretaryMain.css" media="screen">
 <link href="https://fonts.googleapis.com/css?family=Roboto"
 	rel="stylesheet">
 <link rel="stylesheet"
@@ -108,7 +108,7 @@
       <input type="text" class="form-control" name="bankAccount" placeholder="Enter bank account" value="${person.getBankAccount()}">
       </div>
       </div>
-      <a href="./PersonDelete.jsp?id=${person.getPersonId()}&type=${person.getType()}" role="button" class="btn btn-danger pull-right btn-space">
+      <a href="persons?id=${person.getPersonId()}&type=${person.getType()}&del=yes" role="button" class="btn btn-danger pull-right btn-space">
        Delete
        </a>
        <button type="submit" class="btn btn-success pull-right btn-space">Save</button>

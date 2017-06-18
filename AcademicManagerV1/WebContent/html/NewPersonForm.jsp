@@ -9,7 +9,7 @@
 <meta charset="utf-8">
 <title>Person Form Page</title>
 <link rel="stylesheet" type="text/css"
-	href="../css/FrontEnd_Homepage.css" media="screen">
+	href="../css/SecretaryMain.css" media="screen">
 <link href="https://fonts.googleapis.com/css?family=Roboto"
 	rel="stylesheet">
 <link rel="stylesheet"
@@ -31,7 +31,7 @@
 
 		<div class="container-fluid">
 
-			<form method="post" action="./AddNewPerson.jsp"
+			<form method="post" action="persons"
 				class="form-horizontal">
 				<div class="form-group">
 					<label class="control-label col-sm-2" for="type">Person

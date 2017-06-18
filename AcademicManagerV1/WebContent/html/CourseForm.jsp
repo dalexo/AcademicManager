@@ -10,7 +10,7 @@
 <meta charset="utf-8">
 <title>Course Form Page</title>
 <link rel="stylesheet" type="text/css"
-	href="../css/FrontEnd_Homepage.css" media="screen">
+	href="../css/SecretaryMain.css" media="screen">
 <link href="https://fonts.googleapis.com/css?family=Roboto"
 	rel="stylesheet">
 <link rel="stylesheet"
@@ -93,7 +93,7 @@
 						</select>
 					</div>
 				</div>
-				<a href="./CourseDelete.jsp?id=${course.getCourseId()}"
+				<a href="courses?id=${course.getCourseId()}&del=yes"
 					role="button" class="btn btn-danger pull-right btn-space">
 					Delete </a>
 				<button type="submit" class="btn btn-success pull-right btn-space">Save</button>

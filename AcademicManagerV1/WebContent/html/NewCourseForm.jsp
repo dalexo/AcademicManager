@@ -11,7 +11,7 @@
 <meta charset="utf-8">
 <title>Course Form Page</title>
 <link rel="stylesheet" type="text/css"
-	href="../css/FrontEnd_Homepage.css" media="screen">
+	href="../css/SecretaryMain.css" media="screen">
 <link href="https://fonts.googleapis.com/css?family=Roboto"
 	rel="stylesheet">
 <link rel="stylesheet"
@@ -35,7 +35,7 @@
 
 		<div class="container-fluid">
 
-			<form method="post" action="./AddNewCourse.jsp"
+			<form method="post" action="courses"
 				class="form-horizontal">
 				
 				<div class="form-group">
@@ -48,7 +48,7 @@
 				<div class="form-group">
 					<label class="control-label col-sm-2" for="cost">Cost:</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" name="cost"
+						<input type="number" class="form-control" name="cost"
 							placeholder="e.g. lots of money" >
 					</div>
 				</div>

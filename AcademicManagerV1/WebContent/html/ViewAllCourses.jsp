@@ -10,7 +10,7 @@
 <meta charset="utf-8">
 <title>All Courses</title>
 <link rel="stylesheet" type="text/css"
-	href="../css/FrontEnd_Homepage.css" media="screen">
+	href="../css/SecretaryMain.css" media="screen">
 <link href="https://fonts.googleapis.com/css?family=Roboto"
 	rel="stylesheet">
 <link rel="stylesheet"
