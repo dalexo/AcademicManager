@@ -24,6 +24,32 @@ public class CourseServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		String idm = request.getParameter("id");
+		String del = request.getParameter("del");
+
+		if (del != null) {
+			if (del.equals("yes")) {
+
+				int id = Integer.parseInt(request.getParameter("id"));
+
+				Dao<Course> courseDao = null;
+
+				try {
+					courseDao = DAOFactory.getInstance().getCourseDao();
+
+				} catch (SQLException e) {
+					Logger.logDebug("Caught SQLException while trying to get CourseDao instance");
+					Logger.logException(e);
+					return;
+				}
+
+				Course c = new Course();
+
+				c.setCourseId(id);
+				courseDao.delete(c);
+				response.sendRedirect("courses");
+				return;
+			}
+		}
 
 		if (idm != null) {
 			int id = Integer.parseInt(request.getParameter("id"));
@@ -34,7 +60,7 @@ public class CourseServlet extends HttpServlet {
 				courseDao = DAOFactory.getInstance().getCourseDao();
 
 			} catch (SQLException e) {
-				Logger.logDebug("Caught SQLException while trying to retrieve all courses");
+				Logger.logDebug("Caught SQLException while trying to get CourseDao instance");
 				Logger.logException(e);
 				return;
 			}
@@ -49,7 +75,7 @@ public class CourseServlet extends HttpServlet {
 			try {
 				courseDao = DAOFactory.getInstance().getCourseDao();
 			} catch (SQLException e) {
-				Logger.logDebug("Caught SQLException while trying to retrieve all courses");
+				Logger.logDebug("Caught SQLException while trying to get CourseDao instance");
 				Logger.logException(e);
 				return;
 			}
@@ -66,36 +92,72 @@ public class CourseServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		int id = Integer.parseInt(request.getParameter("id"));
-		String title = request.getParameter("title");
-		int cost = Integer.parseInt(request.getParameter("cost"));
-		String description = request.getParameter("description");
-		String startingDate = request.getParameter("startingDate");
-		String endingDate = request.getParameter("endingDate");
-		boolean isActive = Boolean.parseBoolean(request.getParameter("isActive"));
+		String idm = request.getParameter("id");
 
-		Dao<Course> courseDao = null;
+		if (idm != null) {
+			int id = Integer.parseInt(request.getParameter("id"));
+			String title = request.getParameter("title");
+			int cost = Integer.parseInt(request.getParameter("cost"));
+			String description = request.getParameter("description");
+			String startingDate = request.getParameter("startingDate");
+			String endingDate = request.getParameter("endingDate");
+			boolean isActive = Boolean.parseBoolean(request.getParameter("isActive"));
 
-		try {
-			courseDao = DAOFactory.getInstance().getCourseDao();
+			Dao<Course> courseDao = null;
 
-		} catch (SQLException e) {
-			Logger.logDebug("Caught SQLException while trying to retrieve all courses");
-			Logger.logException(e);
+			try {
+				courseDao = DAOFactory.getInstance().getCourseDao();
+
+			} catch (SQLException e) {
+				Logger.logDebug("Caught SQLException while trying to get CourseDao instance");
+				Logger.logException(e);
+				return;
+			}
+
+			Course c = new Course();
+			c.setTitle(title);
+			c.setCost(cost);
+			c.setDescription(description);
+			c.setStartingDate(startingDate);
+			c.setEndingDate(endingDate);
+			c.setActive(isActive);
+			c.setCourseId(id);
+			courseDao.update(c);
+
+			response.sendRedirect("courses");
+			return;
+
+		} else {
+
+			String title = request.getParameter("title");
+			int cost = Integer.parseInt(request.getParameter("cost"));
+			String description = request.getParameter("description");
+			String startingDate = request.getParameter("startingDate");
+			String endingDate = request.getParameter("endingDate");
+			boolean isActive = Boolean.parseBoolean(request.getParameter("isActive"));
+
+			Dao<Course> courseDao = null;
+
+			try {
+				courseDao = DAOFactory.getInstance().getCourseDao();
+
+			} catch (SQLException e) {
+				Logger.logDebug("Caught SQLException while trying to get CourseDao instance");
+				Logger.logException(e);
+				return;
+			}
+
+			Course c = new Course();
+			c.setTitle(title);
+			c.setCost(cost);
+			c.setDescription(description);
+			c.setStartingDate(startingDate);
+			c.setEndingDate(endingDate);
+			c.setActive(isActive);
+			courseDao.add(c);
+			response.sendRedirect("courses");
 			return;
 		}
-
-		Course c = new Course();
-		c.setTitle(title);
-		c.setCost(cost);
-		c.setDescription(description);
-		c.setStartingDate(startingDate);
-		c.setEndingDate(endingDate);
-		c.setActive(isActive);
-		c.setCourseId(id);
-		courseDao.update(c);
-
-		response.sendRedirect("courses");
 
 	}
 }
