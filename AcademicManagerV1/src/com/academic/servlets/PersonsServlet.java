@@ -27,36 +27,34 @@ public class PersonsServlet extends HttpServlet {
 		String idm = request.getParameter("id");
 		String del = request.getParameter("del");
 
-		if (del != null) {
-			if (del.equals("yes")) {
+		if ((del != null) && del.equals("yes")) {
 
-				int id = Integer.parseInt(request.getParameter("id"));
-				type = request.getParameter("type");
+			int id = Integer.parseInt(request.getParameter("id"));
+			type = request.getParameter("type");
 
-				Dao<Person> personDao = null;
+			Dao<Person> personDao = null;
 
-				try {
-					personDao = DAOFactory.getInstance().getPersonDao();
+			try {
+				personDao = DAOFactory.getInstance().getPersonDao();
 
-				} catch (SQLException e) {
-					Logger.logDebug("Caught SQLException while trying to delete person");
-					Logger.logException(e);
-					return;
-				}
-
-				Person p = new Person();
-
-				p.setPersonId(id);
-				personDao.delete(p);
-				if (type.equals("Student")) {
-					response.sendRedirect("./persons?type=students");
-					return;
-				}
-
-				response.sendRedirect("./persons?type=teachers");
+			} catch (SQLException e) {
+				Logger.logDebug("Caught SQLException while trying to delete person");
+				Logger.logException(e);
 				return;
-
 			}
+
+			Person p = new Person();
+
+			p.setPersonId(id);
+			personDao.delete(p);
+			if (type.equals("Student")) {
+				response.sendRedirect("./persons?type=students");
+				return;
+			}
+
+			response.sendRedirect("./persons?type=teachers");
+			return;
+
 		}
 
 		if (idm == null) {

@@ -26,29 +26,28 @@ public class CourseServlet extends HttpServlet {
 		String idm = request.getParameter("id");
 		String del = request.getParameter("del");
 
-		if (del != null) {
-			if (del.equals("yes")) {
+		if ((del != null) && del.equals("yes")) {
 
-				int id = Integer.parseInt(request.getParameter("id"));
+			int id = Integer.parseInt(request.getParameter("id"));
 
-				Dao<Course> courseDao = null;
+			Dao<Course> courseDao = null;
 
-				try {
-					courseDao = DAOFactory.getInstance().getCourseDao();
+			try {
+				courseDao = DAOFactory.getInstance().getCourseDao();
 
-				} catch (SQLException e) {
-					Logger.logDebug("Caught SQLException while trying to delete course");
-					Logger.logException(e);
-					return;
-				}
-
-				Course c = new Course();
-
-				c.setCourseId(id);
-				courseDao.delete(c);
-				response.sendRedirect("courses");
+			} catch (SQLException e) {
+				Logger.logDebug("Caught SQLException while trying to delete course");
+				Logger.logException(e);
 				return;
 			}
+
+			Course c = new Course();
+
+			c.setCourseId(id);
+			courseDao.delete(c);
+			response.sendRedirect("courses");
+			return;
+
 		}
 
 		if (idm != null) {
