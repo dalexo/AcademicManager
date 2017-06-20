@@ -8,7 +8,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Welcome to HAU</title>
-<link rel="stylesheet" href="../css/login.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/login.css">
 <link href="https://fonts.googleapis.com/css?family=Roboto"
 	rel="stylesheet">
 </head>
@@ -45,12 +45,12 @@
 	
 	 <c:choose>
 		<c:when test="${ param.authentication == false   }">
-		  <script type="text/javascript" src="../js/loginFailed.js"></script>
+		  <script type="text/javascript" src="${pageContext.request.contextPath}/js/loginFailed.js"></script>
 		  
 		</c:when>
 		<c:otherwise>
 		
-		  <script type="text/javascript" src="../js/verifyLogin.js"></script>
+		  <script type="text/javascript" src="${pageContext.request.contextPath}/js/verifyLogin.js"></script>
 		</c:otherwise>
 	</c:choose>
 	

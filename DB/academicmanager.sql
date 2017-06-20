@@ -129,4 +129,7 @@ personId int (11),
 PRIMARY KEY(user_id),
 FOREIGN KEY (personId) REFERENCES Person(personId),
 UNIQUE KEY(user_email)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+INSERT INTO `users` (`user_email`, `user_password`, `personId`) VALUES
+('whitneyh@gmail.com', '123456', 5);

@@ -7,18 +7,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-<meta charset="utf-8">
-<title>Course Form Page</title>
-<link rel="stylesheet" type="text/css"
-	href="../css/FrontEnd_Homepage.css" media="screen">
-<link href="https://fonts.googleapis.com/css?family=Roboto"
-	rel="stylesheet">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-	crossorigin="anonymous">
-</head>
+<%@ include file="../html/Head.jsp"%>
 
 
 <body>
@@ -35,7 +24,7 @@
 
 		<div class="container-fluid">
 
-			<form method="post" action="./AddNewCourse.jsp"
+			<form method="post" action="courses"
 				class="form-horizontal">
 				
 				<div class="form-group">
@@ -48,7 +37,7 @@
 				<div class="form-group">
 					<label class="control-label col-sm-2" for="cost">Cost:</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" name="cost"
+						<input type="number" class="form-control" name="cost"
 							placeholder="e.g. lots of money" >
 					</div>
 				</div>
@@ -89,31 +78,7 @@
 			</form>
 		</div>
 	</div>
-	<footer>
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-sm-4">
-					<h3 class="text-center">
-						<a href="#">About</a>
-					</h3>
-
-				</div>
-				<div class="col-sm-4">
-					<h3 class="text-center">
-						<a href="#">Useful Links</a>
-					</h3>
-
-				</div>
-				<div class="col-sm-4">
-					<h3 class="text-center">
-						<a href="#">Contact Us</a>
-					</h3>
-
-				</div>
-			</div>
-		</div>
-
-	</footer>
+<%@ include file="../html/Footer.jsp"%>
 </body>
 
 
