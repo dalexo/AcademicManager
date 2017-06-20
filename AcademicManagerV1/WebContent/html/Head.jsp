@@ -1,7 +1,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Academic Manager</title>
-<link rel="stylesheet" type="text/css" href="../css/SecretaryMain.css"
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/SecretaryMain.css"
 	media="screen">
 <link href="https://fonts.googleapis.com/css?family=Roboto"
 	rel="stylesheet">
